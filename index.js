@@ -3,8 +3,8 @@
  */
 'use strict';
 
-var httputil = require('./http/http.util');
-var auth = require('./middleware/auth.service');
+var httputil = require('./core/http/http.util');
+var auth = require('./core/middleware/auth.service');
 
 exports.httputil = httputil;
 exports.auth = auth;
