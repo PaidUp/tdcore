@@ -4,10 +4,10 @@
   "description": "utilities for javascript projects",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp"
   },
-  "author": "Ricardo Lara <ricardo.lara@talosdigital.com>",
-  "license": "ISC",
+  "author": "Talos Digital <talosdigital@talosdigital.com>",
+  "license": "Private",
   "repository": {
     "type": "git",
     "url": "https://github.com/talosdigital/TDCore.git"
@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/talosdigital/TDCore/issues"
   },
-  "homepage": "https://github.com/talosdigital/TDCore"
+  "homepage": "https://github.com/talosdigital/TDCore",
+  "keywords": [
+    "Core"
+  ],
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-mocha": "^2.0.0"
+  }
 }

@@ -13,9 +13,8 @@ exports.httpRequest = function (opt, method, bodyRequest, path, token, cb) {
     path: path,
     headers: {
       'Authorization': token,
-      'Accept': 'application/vnd.api+json;revision=1.1',
       'Content-Length': bodyRequest.length,
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/json'
     }
   };
 
