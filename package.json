@@ -20,6 +20,7 @@
     "Core"
   ],
   "devDependencies": {
+    "faker": "^2.1.2",
     "gulp": "^3.8.11",
     "gulp-mocha": "^2.0.0"
   }
