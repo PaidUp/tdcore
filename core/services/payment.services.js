@@ -6,8 +6,8 @@
 var httpUtil = require('../http/http.util');
 var config = require('../config/index');
 
-exports.createCustomer = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.POST, data.body, '/api/v1/payment/createCustomer', data.token, function (err, data) {
+exports.createCustomer = function (data, token, cb) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.POST, data, '/api/v1/payment/createCustomer', token, function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -16,7 +16,7 @@ exports.createCustomer = function (data, cb) {
 };
 
 exports.createCard = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.POST, data.body, '/api/v1/payment/createCard', data.token, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.POST, body, '/api/v1/payment/createCard', token, function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -25,7 +25,7 @@ exports.createCard = function (data, cb) {
 };
 
 exports.associateCard = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.POST, data.body, '/api/v1/payment/associateCard', data.token, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.POST, body, '/api/v1/payment/associateCard', token, function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -34,7 +34,7 @@ exports.associateCard = function (data, cb) {
 };
 
 exports.createBank = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.POST, data.body, '/api/v1/payment/createBank', data.token, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.POST, body, '/api/v1/payment/createBank', token, function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -43,7 +43,7 @@ exports.createBank = function (data, cb) {
 };
 
 exports.associateBank = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.POST, data.body, '/api/v1/payment/associateBank', data.token, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.POST, body, '/api/v1/payment/associateBank', token, function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -52,7 +52,7 @@ exports.associateBank = function (data, cb) {
 };
 
 exports.createOrder = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.POST, data.body, '/api/v1/payment/createOrder', data.token, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.POST, body, '/api/v1/payment/createOrder', token, function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -61,7 +61,7 @@ exports.createOrder = function (data, cb) {
 };
 
 exports.debitCard = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.POST, data.body, '/api/v1/payment/debitCard', data.token, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.POST, body, '/api/v1/payment/debitCard', token, function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -70,7 +70,7 @@ exports.debitCard = function (data, cb) {
 };
 
 exports.debitBank = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.POST, data.body, '/api/v1/payment/debitBank', data.token, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.POST, body, '/api/v1/payment/debitBank', token, function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -79,7 +79,7 @@ exports.debitBank = function (data, cb) {
 };
 
 exports.listCustomerBanks = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.GET, data.body, '/api/v1/payment/listCustomerBanks', data.token, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.GET, body, '/api/v1/payment/listCustomerBanks', token, function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -88,7 +88,7 @@ exports.listCustomerBanks = function (data, cb) {
 };
 
 exports.listCards = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.GET, data.body, '/api/v1/payment/listCards', data.token, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.GET, body, '/api/v1/payment/listCards', token, function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -97,7 +97,7 @@ exports.listCards = function (data, cb) {
 };
 
 exports.createBankVerification = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.POST, data.body, '/api/v1/payment/createBankVerification', data.token, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.POST, body, '/api/v1/payment/createBankVerification', token, function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -106,7 +106,7 @@ exports.createBankVerification = function (data, cb) {
 };
 
 exports.loadBankVerification = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.POST, data.body, '/api/v1/payment/loadBankVerification', data.token, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.POST, body, '/api/v1/payment/loadBankVerification', token, function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -115,7 +115,7 @@ exports.loadBankVerification = function (data, cb) {
 };
 
 exports.deleteBankAccount = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.DELETE, data.body, '/api/v1/payment/deleteBankAccount', data.token, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.DELETE, body, '/api/v1/payment/deleteBankAccount', token, function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -124,7 +124,7 @@ exports.deleteBankAccount = function (data, cb) {
 };
 
 exports.confirmBankVerification = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.POST, data.body, '/api/v1/payment/confirmBankVerification', data.token, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.POST, body, '/api/v1/payment/confirmBankVerification', token, function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -133,7 +133,7 @@ exports.confirmBankVerification = function (data, cb) {
 };
 
 exports.updateOrderDescription = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.POST, data.body, '/api/v1/payment/updateOrderDescription', data.token, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.POST, body, '/api/v1/payment/updateOrderDescription', token, function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -142,7 +142,7 @@ exports.updateOrderDescription = function (data, cb) {
 };
 
 exports.listBanks = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.GET, data.body, '/api/v1/payment/listBanks', data.token, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.GET, body, '/api/v1/payment/listBanks', token, function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -151,7 +151,7 @@ exports.listBanks = function (data, cb) {
 };
 
 exports.prepareCard = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.POST, data.body, '/api/v1/payment/prepareCard', data.token, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.POST, body, '/api/v1/payment/prepareCard', token, function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -160,7 +160,7 @@ exports.prepareCard = function (data, cb) {
 };
 
 exports.prepareBank = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.POST, data.body, '/api/v1/payment/prepareBank', data.token, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.POST, body, '/api/v1/payment/prepareBank', token, function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -169,7 +169,7 @@ exports.prepareBank = function (data, cb) {
 };
 
 exports.fetchBank = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.GET, data.body, '/api/v1/payment/fetchBank', data.token, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.GET, body, '/api/v1/payment/fetchBank', token, function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -178,7 +178,7 @@ exports.fetchBank = function (data, cb) {
 };
 
 exports.fetchCard = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.GET, data.body, '/api/v1/payment/fetchCard', data.token, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.GET, body, '/api/v1/payment/fetchCard', token, function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -187,7 +187,7 @@ exports.fetchCard = function (data, cb) {
 };
 
 exports.getUserDefaultBankId = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.GET, data.body, '/api/v1/payment/getUserDefaultBankId', data.token, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.GET, body, '/api/v1/payment/getUserDefaultBankId', token, function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -196,7 +196,7 @@ exports.getUserDefaultBankId = function (data, cb) {
 };
 
 exports.getUserDefaultCardId = function (data, cb) {
-    httpUtil.httpRequest(config.payment.connection, config.methods.GET, data.body, '/api/v1/payment/getUserDefaultCardId', data.token, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.GET, body, '/api/v1/payment/getUserDefaultCardId', token, function (err, data) {
         if (err) {
             return cb(err);
         }

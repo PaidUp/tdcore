@@ -3,8 +3,8 @@
 var httpUtil = require('../http/http.util');
 var config = require('../config/index');
 
-function create(data, cb) {
-  httpUtil.httpRequest(config.user.connection, config.methods.POST, data.body, '/api/users/', data.token, function (err, data) {
+function create(data, token, cb) {
+  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/api/users/', data, function (err, data) {
     if (err) {
       return cb(err);
     }

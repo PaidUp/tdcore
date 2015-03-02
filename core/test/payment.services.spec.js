@@ -4,25 +4,27 @@ var assert = require('assert');
 var paymentService = require('../services/payment.services');
 
 var customer = {};
+var tokenPayment = 'nodePaymentPass';
 
-describe('payment services test', function () {
+describe.only('payment services test', function () {
   it('createCustomer', function (done) {
-      var data = {
-          token:'',
-          body:{
-              user:{
-                  name: user.firstName + " " + user.lastName,
-                  email: user.email,
-                  meta: { csId: user.id}
-              }
-          }
-      };
-    paymentService.createCustomer(token, function (err, data) {
+  var data = {
+      user:{
+          name: user.firstName + " " + user.lastName,
+          email: user.email,
+          meta: { csId: user.id}
+      }
+  };
+    paymentService.createCustomer(data, tokenPayment, function (err, data) {
       if (err) {
+          console.log("Err");
+          console.log(err);
         return done(err);
       }
-      assert.(data._id);
-      return done();
+        console.log("Data");
+        console.log(data);
+        assert.(data._id);
+        return done();
     });
   });
 });
