@@ -14,7 +14,7 @@ exports.httpRequest = function (opt, method, bodyRequest, path, token, cb) {
     headers: {
       'Authorization': token,
       'Content-Length': bodyRequest.length,
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/x-www-form-urlencoded'
     }
   };
 
