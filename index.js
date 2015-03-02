@@ -1,10 +1,9 @@
-/**
- * Created by riclara on 2/24/15.
- */
 'use strict';
 
-var httputil = require('./core/http/http.util');
+var httpUtil = require('./core/http/http.util');
 var auth = require('./core/middleware/auth.service');
+var userService = userService('./core/services/user.service');
 
-exports.httputil = httputil;
+exports.httpUtil = httpUtil;
 exports.auth = auth;
+exports.userService = userService;
