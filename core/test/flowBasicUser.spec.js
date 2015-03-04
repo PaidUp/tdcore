@@ -58,7 +58,25 @@ describe.only('flow', function () {
       if (err) {
         return done(err);
       }
+      userModel.token = '';
       assert(data);
+      return done();
+    });
+  });
+
+  it('user login', function (done) {
+    var credentials = {
+      email: userModel.email,
+      password: userModel.password,
+      rememberMe: true
+    };
+    
+    authService.login(credentials, tokenTDUser, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      userModel.token = data.token;
+      assert(data.token);
       return done();
     });
   });
