@@ -2,16 +2,16 @@
 var assert = require('assert');
 var userService = require('../services/user.service');
 var faker = require('faker');
+var tokenUser = 'NodeUserTOKEN';
 
 describe('user services test', function () {
   it('create', function (done) {
-    var body = {
+    var data = {
       firstName : faker.name.firstName(),
       lastName : faker.name.lastName()
     };
-    var token = 'TokenDestiny';
-    userService.create(body, token, function (err, data) {
-      console.log('data', data);
+    
+    userService.create(data, tokenUser, function (err, data) {
       if (err) {
         return done(err);
       }
