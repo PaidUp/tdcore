@@ -13,4 +13,14 @@ function create(data, token, cb) {
   });
 }
 
+function current(data, token, tokenUser, cb) {
+  httpUtil.httpRequest(config.user.connection, config.methods.GET, data, '/api/v1/user/current/?token='+tokenUser, token, function (err, data) {
+    if (err) {
+      return cb(err);
+    }
+    return cb(null, data);
+  });
+}
+
 exports.create = create;
+exports.current = current;
