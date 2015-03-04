@@ -43,8 +43,7 @@ var data = {
         description : 'This is description order test'
     }},
     orderId : '',
-
-
+    orderBankId : '',
     debitCardData : function(){
         return {
             cardId : this.creditCard.id,
@@ -52,6 +51,37 @@ var data = {
             description : 'Order test '+this.user.firstName,
             appearsOnStatementAs: 'Conv. Select',
             orderId : this.orderId
+        }
+    },
+    debitBankData : function(){
+        return {
+            bankId : this.bankAccount.id,
+            amount : '150',
+            description : 'Order bank test '+this.user.firstName,
+            appearsOnStatementAs: 'Conv. Select',
+            orderId : this.orderBankId
+        }
+    },
+    bankAccountVerification : {
+
+    },
+    confirmBankVerificationData : function(){
+        return {
+            verificationId : this.bankAccountVerification.id,
+            amount1 : '1',
+            amount2  : '1'
+        }
+    },
+    prepareBankData : function(){
+        return {
+            userId : this.user.id,
+            bankId : this.bankAccount.id
+        }
+    },
+    prepareCardData : function(){
+        return {
+            userId : this.user.id,
+            cardId : this.creditCard.id
         }
     }
 
