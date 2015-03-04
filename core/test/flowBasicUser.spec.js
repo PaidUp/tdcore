@@ -40,4 +40,14 @@ describe.only('flow', function () {
       return done();
     });
   });
+
+  it('create user logout', function (done) {
+    authService.logout({}, tokenTDUser, userModel.token, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data);
+      return done();
+    });
+  });
 });

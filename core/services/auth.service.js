@@ -12,4 +12,14 @@ function authLocal(data, token, cb) {
   });
 }
 
+function logout(data, token, tokenUser, cb) {
+  httpUtil.httpRequest(config.user.connection, config.methods.GET, {}, '/api/v1/auth/logout/?'+tokenUser, token, function (err, data) {
+    if (err) {
+      return cb(err);
+    }
+    return cb(null, data);
+  });
+}
+
 exports.authLocal = authLocal;
+exports.logout = logout;
