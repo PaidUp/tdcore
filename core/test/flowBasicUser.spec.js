@@ -23,7 +23,7 @@ describe.only('flow', function () {
     });
   });
 
-  it('create user auth', function (done) {
+  it('user auth', function (done) {
     var credentialFake = {
       userId: userModel.userId,
       email: userModel.email,
@@ -37,6 +37,18 @@ describe.only('flow', function () {
       }
       userModel.token = data.token;
       assert(data.token);
+      return done();
+    });
+  });
+
+  it('user current', function (done) {
+    userService.current({}, tokenTDUser, userModel.token, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data._id);
+      assert(data.email);
+      assert.equal(data._id,userModel.userId);
       return done();
     });
   });
