@@ -6,9 +6,6 @@ var faker = require('faker');
 var modelSpec = require('./payment.model.spec');
 
 var token = 'nodePaymentPass';
-var customer = {};
-var creditCard = {};
-
 
 function createOrder(order, token, cb){
     paymentService.createOrder(order, token, function(err, datao){
@@ -164,9 +161,8 @@ describe.only('payment services test', function () {
         if(err){
         done(err);
       }
-
-            //assert.equal(1, data.bankAccountVerifications.length, 'Must exist one account pending to verification');
-            //modelSpec.bankAccountVerification = data.bankAccountVerifications[0];
+      assert.equal(1, data.bankAccountVerifications.length, 'Must exist one account pending to verification');
+      modelSpec.bankAccountVerification = data.bankAccountVerifications[0];
       done();
       });
   });
