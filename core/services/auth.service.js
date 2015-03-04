@@ -21,5 +21,15 @@ function logout(data, token, tokenUser, cb) {
   });
 }
 
+function login(data, token, cb) {
+  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/api/v1/auth/local/login', token, function (err, data) {
+    if (err) {
+      return cb(err);
+    }
+    return cb(null, data);
+  });
+}
+
 exports.authLocal = authLocal;
 exports.logout = logout;
+exports.login = login;
