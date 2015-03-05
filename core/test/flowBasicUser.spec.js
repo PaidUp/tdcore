@@ -64,7 +64,7 @@ describe.only('flow', function () {
     });
   });
 
-  it('user login', function (done) {
+  it('user login local', function (done) {
     var credentials = {
       email: userModel.email,
       password: userModel.password,
@@ -77,6 +77,19 @@ describe.only('flow', function () {
       }
       userModel.token = data.token;
       assert(data.token);
+      return done();
+    });
+  });
+
+  it('user login facebook', function (done) {
+    var credentials = {
+      facebookToken: 'FAKE'
+    };
+    
+    authService.facebook(credentials, tokenTDUser, function (err, data) {
+      if (err) {
+        return done(err);
+      }
       return done();
     });
   });
