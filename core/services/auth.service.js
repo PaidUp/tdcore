@@ -30,6 +30,16 @@ function login(data, token, cb) {
   });
 }
 
+function facebook(data, token, cb) {
+  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/api/v1/auth/facebook/', token, function (err, data) {
+    if (err) {
+      return cb(err);
+    }
+    return cb(null, data);
+  });
+}
+
 exports.authLocal = authLocal;
 exports.logout = logout;
 exports.login = login;
+exports.facebook = facebook;
