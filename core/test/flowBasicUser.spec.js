@@ -4,7 +4,7 @@ var userService = require('../services/user.service');
 var authService = require('../services/auth.service');
 var faker = require('faker');
 var userModel = require('./user.model.spec');
-var tokenTDUser = 'NodeUserTOKEN';
+var tokenTDUser = 'TDUserToken-CHANGE-ME!';
 
 describe.only('flow', function () {
   it('create user', function (done) {
@@ -169,4 +169,32 @@ describe.only('flow', function () {
       return done();
     });
   });
+
+  it('user update', function (done) {
+    var data = {
+      userId: userModel.userId,
+      firstName: userModel.firstName,
+      lastName: userModel.lastName,
+      gender: userModel.gender,
+      birthDate: userModel.birthDate
+    }
+    userService.update(data, tokenTDUser, userModel.userId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data);
+      return done();
+    });
+  });
+
+  /*it.skip('user find', function (done) {
+    var filter = {};
+    userService.find(filter, tokenTDUser, userModel.userId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data);
+      return done();
+    });
+  });*/
 });

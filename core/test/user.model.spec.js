@@ -10,7 +10,9 @@ var data = {
         return this.firstName + ' ' + this.lastName;
     },
     password : 'Querty1!',
-    token:''
+    token:'',
+    gender: 'male',
+    birthDate: '1987-07-29'
 };
 
 module.exports = data;

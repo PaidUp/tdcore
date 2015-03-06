@@ -6,7 +6,8 @@ function isAuthenticatedServer(meToken) {
       next();
     } else {
       return res.json(401, {
-        'test': 'authenticated fail'
+        'code': 'AuthFail',
+        'message': 'Authentication failed.'
       });
     }
   };
