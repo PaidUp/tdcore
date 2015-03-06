@@ -1,6 +1,7 @@
 'user strict';
 
 var all = {
+  path:'/api/v1',
   methods: {
     POST : 'POST',
     GET : 'GET',
@@ -19,34 +20,6 @@ var all = {
       isHttps: false,
       host: 'localhost',
       port: 9001
-    }
-  },
-  commerce: {
-    connection: {
-      isHttps: false,
-      host: 'localhost',
-      port: 9002
-    }
-  },
-  croudfunding: {
-    connection: {
-      isHttps: false,
-      host: 'localhost',
-      port: 9003
-    }
-  },
-  loan: {
-    connection: {
-      isHttps: false,
-      host: 'localhost',
-      port: 9004
-    }
-  },
-  payment: {
-    connection: {
-      isHttps: false,
-      host: 'localhost',
-      port: 9005
     }
   }
 };
