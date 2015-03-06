@@ -22,5 +22,15 @@ function current(data, token, tokenUser, cb) {
   });
 }
 
+function update(data, token, userId, cb) {
+  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/api/v1/user/update/userId/'+userId, token, function (err, data) {
+    if (err) {
+      return cb(err);
+    }
+    return cb(null, data);
+  });
+}
+
 exports.create = create;
 exports.current = current;
+exports.update = update;

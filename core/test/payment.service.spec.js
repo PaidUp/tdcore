@@ -18,7 +18,7 @@ function createOrder(order, token, cb){
     });
 };
 
-describe.only('payment services test', function () {
+describe.skip('payment services test', function () {
   it('createCustomer', function (done) {this.timeout(60000);
     var body = modelSpec.user;
     paymentService.createCustomer(body, token, function (err, data) {
