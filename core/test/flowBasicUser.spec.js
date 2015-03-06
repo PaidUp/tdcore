@@ -12,7 +12,6 @@ describe.only('flow', function () {
       firstName : userModel.firstName,
       lastName : userModel.lastName
     };
-    
     userService.create(data, tokenTDUser, function (err, data) {
       if (err) {
         return done(err);
@@ -23,15 +22,14 @@ describe.only('flow', function () {
     });
   });
 
-  it('user auth', function (done) {
+  it('auth signup', function (done) {
     var credentialFake = {
       userId: userModel.userId,
       email: userModel.email,
       password: userModel.password,
       rememberMe: true
     };
-    
-    authService.authLocal(credentialFake, tokenTDUser, function (err, data) {
+    authService.signup(credentialFake, tokenTDUser, function (err, data) {
       if (err) {
         return done(err);
       }
@@ -69,8 +67,7 @@ describe.only('flow', function () {
       email: userModel.email,
       password: userModel.password,
       rememberMe: true
-    };
-    
+    };    
     authService.login(credentials, tokenTDUser, function (err, data) {
       if (err) {
         return done(err);
@@ -82,14 +79,93 @@ describe.only('flow', function () {
   });
 
   it('user login facebook', function (done) {
+    this.timeout(5000);
     var credentials = {
       facebookToken: 'FAKE'
-    };
-    
+    }; 
     authService.facebook(credentials, tokenTDUser, function (err, data) {
       if (err) {
         return done(err);
       }
+      return done();
+    });
+  });
+
+  it('verify request', function (done) {
+    authService.verifyRequest({}, tokenTDUser, userModel.userId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data);
+      return done();
+    });
+  });
+
+  it('verify', function (done) {
+    var data = {
+      verifyToken: 'xxx'
+    };
+    authService.verify(data, tokenTDUser, userModel.userId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data);
+      return done();
+    });
+  });
+
+  it('password reset request', function (done) {
+    var data = {
+      email: userModel.email
+    }
+    authService.passwordResetRequest(data, tokenTDUser, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data);
+      return done();
+    });
+  });
+
+  it('password reset', function (done) {
+    this.timeout(5000);
+    var data = {
+      verifyToken: 'xxx',
+      password: userModel.password
+    };
+    authService.passwordReset(data, tokenTDUser, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data.code);
+      return done();
+    });
+  });
+
+  it('password update', function (done) {
+    var data = {
+      newPassword: userModel.password,
+      currentPassword: userModel.password
+    }
+    authService.passwordUpdate(data, tokenTDUser, userModel.userId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data.code);
+      return done();
+    });
+  });
+
+  it('email update', function (done) {
+    var data = {
+      email: 'email@email.com',
+      userId: userModel.userId
+    }
+    authService.emailUpdate(data, tokenTDUser, userModel.userId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data);
       return done();
     });
   });
