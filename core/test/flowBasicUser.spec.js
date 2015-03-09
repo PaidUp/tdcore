@@ -295,5 +295,15 @@ describe.only('flow', function () {
       return done();
     });
   });
+
+  it('user address load', function (done) {
+    userService.addressLoad({}, tokenTDUser, userModel.userId, userModel.addressId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data.addressId);
+      return done();
+    });
+  });
   
 });
