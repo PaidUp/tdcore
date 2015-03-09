@@ -282,5 +282,18 @@ describe.only('flow', function () {
       return done();
     });
   });
+
+  it('user address list', function (done) {
+    var data = {
+      userId: userModel.userId
+    };
+    userService.addressList(data, tokenTDUser, userModel.userId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert.operator(data.length, '>', 0);
+      return done();
+    });
+  });
   
 });
