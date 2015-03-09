@@ -252,4 +252,14 @@ describe.only('flow', function () {
     });
   });
 
+  it('user contact delete', function (done) {
+    userService.contactDelete({}, tokenTDUser, userModel.userId, userModel.contactId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data);
+      return done();
+    });
+  });
+
 });

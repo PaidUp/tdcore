@@ -76,6 +76,15 @@ function contactUpdate(data, token, userId, contactId, cb) {
   });
 }
 
+function contactDelete(data, token, userId, contactId, cb) {
+  httpUtil.httpRequest(config.user.connection, config.methods.DELETE, data, '/api/v1/user/contact/delete/userId/'+userId+'/contactId/'+contactId, token, function (err, data) {
+    if (err) {
+      return cb(err);
+    }
+    return cb(null, data);
+  });
+}
+
 exports.create = create;
 exports.current = current;
 exports.update = update;
@@ -84,4 +93,5 @@ exports.contactCreate = contactCreate;
 exports.contactList = contactList;
 exports.contactLoad = contactLoad;
 exports.contactUpdate = contactUpdate;
+exports.contactDelete = contactDelete;
 
