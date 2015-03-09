@@ -238,4 +238,18 @@ describe.only('flow', function () {
     });
   });
 
+  it('user contact update', function (done) {
+    var data = {
+      userId: userModel.userId,
+      value: userModel.valueContact
+    }
+    userService.contactUpdate(data, tokenTDUser, userModel.userId, userModel.contactId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data.contactId);
+      return done();
+    });
+  });
+
 });
