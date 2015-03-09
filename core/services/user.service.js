@@ -85,6 +85,15 @@ function contactDelete(data, token, userId, contactId, cb) {
   });
 }
 
+function addressCreate(data, token, userId, cb) {
+  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/api/v1/user/address/create/userId/'+userId, token, function (err, data) {
+    if (err) {
+      return cb(err);
+    }
+    return cb(null, data);
+  });
+}
+
 exports.create = create;
 exports.current = current;
 exports.update = update;
@@ -94,4 +103,5 @@ exports.contactList = contactList;
 exports.contactLoad = contactLoad;
 exports.contactUpdate = contactUpdate;
 exports.contactDelete = contactDelete;
+exports.addressCreate = addressCreate;
 

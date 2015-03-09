@@ -16,7 +16,16 @@ var data = {
     label: 'label',
     type: 'telephone',
     valueContact: 'value',
-    contactId:''
+    contactId:'',
+    typeAddress: 'billing',
+    labelAddress : 'label',
+    address1 : 'address 1',
+    address2 : 'address 2',
+    city : 'city',
+    state : 'state',
+    country : 'country',
+    zipCode : '00000',
+    addressId: ''
 };
 
 module.exports = data;

@@ -261,5 +261,26 @@ describe.only('flow', function () {
       return done();
     });
   });
-
+  
+  it('user address create', function (done) {
+    var data = {
+      type: userModel.typeAddress,
+      label : userModel.labelAddress,
+      address1 : userModel.address1,
+      address2 : userModel.address2,
+      city : userModel.city,
+      state : userModel.state,
+      country : userModel.country,
+      zipCode : userModel.zipCode
+    };
+    userService.addressCreate(data, tokenTDUser, userModel.userId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      userModel.addressId = data.addressId;
+      assert(data.addressId);
+      return done();
+    });
+  });
+  
 });
