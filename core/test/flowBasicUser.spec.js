@@ -1,5 +1,5 @@
 'use strict';
-var assert = require('assert');
+var assert = require('chai').assert;
 var userService = require('../services/user.service');
 var authService = require('../services/auth.service');
 var faker = require('faker');
@@ -151,7 +151,7 @@ describe.only('flow', function () {
       if (err) {
         return done(err);
       }
-      assert(data.code);
+      assert(data);
       return done();
     });
   });
@@ -187,14 +187,79 @@ describe.only('flow', function () {
     });
   });
 
-  /*it.skip('user find', function (done) {
+  it('user find', function (done) {
     var filter = {};
     userService.find(filter, tokenTDUser, userModel.userId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert.operator(data.length, '>', 0);
+      return done();
+    });
+  });
+
+  it('user contact create', function (done) {
+    var data = {
+      userId: userModel.userId,
+      label: userModel.label,
+      type: userModel.type,
+      valueContact: userModel.valueContact
+    };
+    userService.contactCreate(data, tokenTDUser, userModel.userId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      userModel.contactId = data.contactId;
+      assert(data.contactId);
+      return done();
+    });
+  });
+
+  it('user contact list', function (done) {
+    var data = {
+      userId: userModel.userId
+    };
+    userService.contactList(data, tokenTDUser, userModel.userId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert.operator(data.length, '>', 0);
+      return done();
+    });
+  });
+
+  it('user contact load', function (done) {
+    userService.contactLoad({}, tokenTDUser, userModel.userId, userModel.contactId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data.contactId);
+      return done();
+    });
+  });
+
+  it('user contact update', function (done) {
+    var data = {
+      userId: userModel.userId,
+      value: userModel.valueContact
+    }
+    userService.contactUpdate(data, tokenTDUser, userModel.userId, userModel.contactId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data.contactId);
+      return done();
+    });
+  });
+
+  it('user contact delete', function (done) {
+    userService.contactDelete({}, tokenTDUser, userModel.userId, userModel.contactId, function (err, data) {
       if (err) {
         return done(err);
       }
       assert(data);
       return done();
     });
-  });*/
+  });
+
 });

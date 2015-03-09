@@ -12,7 +12,11 @@ var data = {
     password : 'Querty1!',
     token:'',
     gender: 'male',
-    birthDate: '1987-07-29'
+    birthDate: '1987-07-29',
+    label: 'label',
+    type: 'telephone',
+    valueContact: 'value',
+    contactId:''
 };
 
 module.exports = data;
