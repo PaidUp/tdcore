@@ -1,5 +1,5 @@
 'use strict';
-var assert = require('assert');
+var assert = require('chai').assert;
 var userService = require('../services/user.service');
 var authService = require('../services/auth.service');
 var faker = require('faker');
@@ -151,7 +151,7 @@ describe.only('flow', function () {
       if (err) {
         return done(err);
       }
-      assert(data.code);
+      assert(data);
       return done();
     });
   });
@@ -187,14 +187,14 @@ describe.only('flow', function () {
     });
   });
 
-  /*it.skip('user find', function (done) {
+  it('user find', function (done) {
     var filter = {};
     userService.find(filter, tokenTDUser, userModel.userId, function (err, data) {
       if (err) {
         return done(err);
       }
-      assert(data);
+      assert.operator(data.length, '>', 0);
       return done();
     });
-  });*/
+  });
 });
