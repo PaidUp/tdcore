@@ -197,4 +197,20 @@ describe.only('flow', function () {
       return done();
     });
   });
+
+  it('user contact create', function (done) {
+    var data = {
+      userId: userModel.userId,
+      label: userModel.label,
+      type: userModel.type,
+      valueContact: userModel.valueContact
+    };
+    userService.contactCreate(data, tokenTDUser, userModel.userId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data.contactId);
+      return done();
+    });
+  });
 });

@@ -39,21 +39,19 @@ function find(data, token, userId, cb) {
     return cb(null, data);
   });
 }
-/*
+
 function contactCreate(data, token, userId, cb) {
-  var data = {
-  };
-  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/api/v1/user/find', token, function (err, data) {
+  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/api/v1/user/contact/create/userId/'+userId, token, function (err, data) {
     if (err) {
       return cb(err);
     }
     return cb(null, data);
   });
 }
-*/
+
 
 exports.create = create;
 exports.current = current;
 exports.update = update;
 exports.find = find;
-//exports.contactCreate = contactCreate;
+exports.contactCreate = contactCreate;
