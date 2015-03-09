@@ -261,5 +261,78 @@ describe.only('flow', function () {
       return done();
     });
   });
+  
+  it('user address create', function (done) {
+    var data = {
+      type: userModel.typeAddress,
+      label : userModel.labelAddress,
+      address1 : userModel.address1,
+      address2 : userModel.address2,
+      city : userModel.city,
+      state : userModel.state,
+      country : userModel.country,
+      zipCode : userModel.zipCode
+    };
+    userService.addressCreate(data, tokenTDUser, userModel.userId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      userModel.addressId = data.addressId;
+      assert(data.addressId);
+      return done();
+    });
+  });
 
+  it('user address list', function (done) {
+    var data = {
+      userId: userModel.userId
+    };
+    userService.addressList(data, tokenTDUser, userModel.userId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert.operator(data.length, '>', 0);
+      return done();
+    });
+  });
+
+  it('user address load', function (done) {
+    userService.addressLoad({}, tokenTDUser, userModel.userId, userModel.addressId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data.addressId);
+      return done();
+    });
+  });
+
+  it('user address update', function (done) {
+    var data = {
+      label : userModel.labelAddress,
+      address1 : userModel.address1,
+      address2 : userModel.address2,
+      city : userModel.city,
+      state : userModel.state,
+      country : userModel.country,
+      zipCode : userModel.zipCode
+    }
+    userService.addressUpdate(data, tokenTDUser, userModel.userId, userModel.addressId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data.addressId);
+      return done();
+    });
+  });
+
+  it('user address delete', function (done) {
+    userService.addressDelete({}, tokenTDUser, userModel.userId, userModel.addressId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data);
+      return done();
+    });
+  });
+  
 });
