@@ -213,4 +213,17 @@ describe.only('flow', function () {
       return done();
     });
   });
+
+  it('user contact list', function (done) {
+    var data = {
+      userId: userModel.userId
+    };
+    userService.contactList(data, tokenTDUser, userModel.userId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert.operator(data.length, '>', 0);
+      return done();
+    });
+  });
 });
