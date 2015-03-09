@@ -58,6 +58,15 @@ function contactList(data, token, userId, cb) {
   });
 }
 
+function contactLoad(data, token, userId, contactId, cb) {
+  httpUtil.httpRequest(config.user.connection, config.methods.GET, data, '/api/v1/user/contact/load/userId/'+userId+'/contactId/'+contactId, token, function (err, data) {
+    if (err) {
+      return cb(err);
+    }
+    return cb(null, data);
+  });
+}
+
 
 exports.create = create;
 exports.current = current;
@@ -65,3 +74,6 @@ exports.update = update;
 exports.find = find;
 exports.contactCreate = contactCreate;
 exports.contactList = contactList;
+exports.contactLoad = contactLoad;
+
+

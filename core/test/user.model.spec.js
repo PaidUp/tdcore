@@ -15,7 +15,8 @@ var data = {
     birthDate: '1987-07-29',
     label: 'label',
     type: 'telephone',
-    valueContact: 'value'
+    valueContact: 'value',
+    contactId:''
 };
 
 module.exports = data;

@@ -209,6 +209,7 @@ describe.only('flow', function () {
       if (err) {
         return done(err);
       }
+      userModel.contactId = data.contactId;
       assert(data.contactId);
       return done();
     });
@@ -226,4 +227,15 @@ describe.only('flow', function () {
       return done();
     });
   });
+
+  it('user contact load', function (done) {
+    userService.contactLoad({}, tokenTDUser, userModel.userId, userModel.contactId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data.contactId);
+      return done();
+    });
+  });
+
 });
