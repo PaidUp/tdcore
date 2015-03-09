@@ -324,5 +324,15 @@ describe.only('flow', function () {
       return done();
     });
   });
+
+  it('user address delete', function (done) {
+    userService.addressDelete({}, tokenTDUser, userModel.userId, userModel.addressId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data);
+      return done();
+    });
+  });
   
 });

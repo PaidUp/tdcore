@@ -121,6 +121,15 @@ function addressUpdate(data, token, userId, addressId, cb) {
   });
 }
 
+function addressDelete(data, token, userId, addressId, cb) {
+  httpUtil.httpRequest(config.user.connection, config.methods.DELETE, data, '/api/v1/user/address/delete/userId/'+userId+'/addressId/'+addressId, token, function (err, data) {
+    if (err) {
+      return cb(err);
+    }
+    return cb(null, data);
+  });
+}
+
 exports.create = create;
 exports.current = current;
 exports.update = update;
@@ -134,4 +143,5 @@ exports.addressCreate = addressCreate;
 exports.addressList = addressList;
 exports.addressLoad = addressLoad;
 exports.addressUpdate = addressUpdate;
+exports.addressDelete = addressDelete;
 
