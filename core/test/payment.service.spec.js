@@ -102,8 +102,14 @@ describe.skip('payment services test', function () {
           if(err){
               return done(err);
           }
+          console.log("datao");
+          console.log(datao);
+
+
           assert(datao,'The response must not be null');
-          modelSpec.orderId = datao;
+
+
+          modelSpec.orderId = datao.orders[0].id;
           return done();
       });
   });
@@ -115,13 +121,16 @@ describe.skip('payment services test', function () {
                 return done(err);
             }
             assert(datao,'The response must not be null');
-            modelSpec.orderBankId = datao;
+            modelSpec.orderBankId = datao.orders[0].id;
             return done();
         });
     });
   it('debitCard', function(done){
       this.timeout(60000);
       var debitCardData = modelSpec.debitCardData();
+
+      console.log('debit card data');
+      console.log(debitCardData);
 
       paymentService.debitCard(debitCardData, token, function(err, data){
           if(err)
@@ -217,18 +226,6 @@ describe.skip('payment services test', function () {
           return done();
       });
   });
-    it('listBanks', function(done){
-        this.timeout(60000);
-        paymentService.listBanks(modelSpec.customer.id, token, function(err, data){
-            if(err){
-                return done(err);
-            }
-            console.log('list banks');
-            console.log(data);
-            assert.equal(1, data.bankAccounts.length, 'Must exist one bank account');
-            return done();
-        });
-    });
     it('prepareBank', function(done){
         this.timeout(60000);
         var prepareBankData = modelSpec.prepareBankData();
