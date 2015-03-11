@@ -25,7 +25,9 @@ var data = {
     state : 'state',
     country : 'country',
     zipCode : '00000',
-    addressId: ''
+    addressId: '',
+    childId:'',
+    typeRelation: 'child'
 };
 
 module.exports = data;

@@ -130,6 +130,24 @@ function addressDelete(data, token, userId, addressId, cb) {
   });
 }
 
+function relationCreate(data, token, cb) {
+  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/api/v1/user/relation/create', token, function (err, data) {
+    if (err) {
+      return cb(err);
+    }
+    return cb(null, data);
+  });
+}
+
+function relationList(data, token, userId, cb) {
+  httpUtil.httpRequest(config.user.connection, config.methods.GET, data, '/api/v1/user/relation/list/userId/'+userId, token, function (err, data) {
+    if (err) {
+      return cb(err);
+    }
+    return cb(null, data);
+  });
+}
+
 exports.create = create;
 exports.current = current;
 exports.update = update;
@@ -144,4 +162,5 @@ exports.addressList = addressList;
 exports.addressLoad = addressLoad;
 exports.addressUpdate = addressUpdate;
 exports.addressDelete = addressDelete;
-
+exports.relationCreate = relationCreate;
+exports.relationList = relationList;
