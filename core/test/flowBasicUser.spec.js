@@ -334,5 +334,47 @@ describe.only('flow', function () {
       return done();
     });
   });
+
+  it('create user (child)', function (done) {
+    var data = {
+      userId: userModel.userId,
+      firstName : userModel.firstName,
+      lastName : userModel.lastName,
+      gender : userModel.gender,
+      birthDate : userModel.birthDate
+    };
+    userService.create(data, tokenTDUser, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      userModel.childId = data.userId;
+      assert(data.userId);
+      return done();
+    });
+  });
+
+  it('user relation create', function(done) {
+    var data = {
+      sourceUserId: userModel.userId,
+      targetUserId : userModel.childId,
+      type: userModel.typeRelation
+    };
+    userService.relationCreate(data, tokenTDUser, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      return done();
+    });
+  });
+
+  it('user relation list', function(done) {
+    userService.relationList({}, tokenTDUser, userModel.userId, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert.operator(data.length, '>', 0);
+      return done();
+    });
+  });
   
 });
