@@ -233,4 +233,21 @@ describe.only('payment services test', function () {
             return done();
         });
     });
+    it('test change connection object', function(done){
+      this.timeout(60000);
+      var conn = {
+        urlPrefix : '/api/v2',
+        isHttps: false,
+        host: 'localhost',
+        port: 9005
+      };
+      paymentService.init(conn);
+      paymentService.associateBank({}, token, function(err, data){
+        if(err){
+          done(err);
+        }
+        assert.equal(404, data.code);
+        done();
+      });
+    });
 });
