@@ -16,8 +16,8 @@ function signup(data, cb) {
   });
 }
 
-function logout(data, tokenUser, cb) {
-  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/auth/logout/userId/' + tokenUser, data, function (err, data) {
+function logout(tokenUser, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/auth/logout/userId/' + tokenUser, null, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -43,8 +43,8 @@ function facebook(data, cb) {
   });
 }
 
-function verifyRequest(data, userId, cb) {
-  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/auth/verify-request/userId/' + userId, data, function (err, data) {
+function verifyRequest(userId, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/auth/verify-request/userId/' + userId, null, function (err, data) {
     if (err) {
       return cb(err);
     }

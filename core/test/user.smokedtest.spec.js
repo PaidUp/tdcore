@@ -40,7 +40,7 @@ describe.only('flow', function () {
   });
 
   it('user current', function (done) {
-    userService.current({}, '', function (err, data) {
+    userService.current('', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -50,7 +50,7 @@ describe.only('flow', function () {
   });
 
   it('create user logout', function (done) {
-    authService.logout({}, '', function (err, data) {
+    authService.logout('', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -84,7 +84,7 @@ describe.only('flow', function () {
   });
 
   it('verify request', function (done) {
-    authService.verifyRequest({}, '', function (err, data) {
+    authService.verifyRequest('', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -185,7 +185,7 @@ describe.only('flow', function () {
   });
 
   it('user contact load', function (done) {
-    userService.contactLoad({}, '', '', function (err, data) {
+    userService.contactLoad('', '', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -235,7 +235,7 @@ describe.only('flow', function () {
   });
 
   it('user address load', function (done) {
-    userService.addressLoad({}, '', '', function (err, data) {
+    userService.addressLoad('', '', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -284,7 +284,7 @@ describe.only('flow', function () {
   });
 
   it('user relation list', function(done) {
-    userService.relationList({}, '', function (err, data) {
+    userService.relationList('', function (err, data) {
       if (err) {
         return done(err);
       }
