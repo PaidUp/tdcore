@@ -6,6 +6,10 @@
 var httpUtil = require('../http/http.util');
 var config = require('../config/index');
 
+exports.init = function(connection){
+  config.payment.connection = connection;
+}
+
 exports.createCustomer = function (data, token, cb) {
     httpUtil.httpRequest(config.payment.connection, config.methods.POST, data, '/customer/create', token, function (err, data) {
         if (err) {
