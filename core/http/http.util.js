@@ -30,7 +30,11 @@ exports.httpRequest = function (opt, method, bodyRequest, path, token, cb) {
     res.on('end', function () {
       var pbody = {};
       if (body !== "") {
-        pbody = JSON.parse(body);
+        try {
+          pbody = JSON.parse(body);
+        }catch(e){
+          pbody = {};
+        }
       }
       return cb(null, pbody);
     });
