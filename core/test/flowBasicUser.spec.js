@@ -6,7 +6,7 @@ var faker = require('faker');
 var userModel = require('./user.model.spec');
 var tokenTDUser = 'TDUserToken-CHANGE-ME!';
 
-describe.only('flow', function () {
+describe.skip('flow', function () {
   it('create user', function (done) {
     var data = {
       firstName : userModel.firstName,

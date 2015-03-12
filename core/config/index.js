@@ -21,6 +21,13 @@ var all = {
       host: 'localhost',
       port: 9001
     }
+  },
+  payment: {
+    connection: {
+    isHttps: false,
+    host: 'localhost',
+    port: 9005
+    }
   }
 };
 
