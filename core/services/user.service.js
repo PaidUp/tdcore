@@ -16,8 +16,8 @@ function create(data, cb) {
   });
 }
 
-function current(data, tokenUser, cb) {
-  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/user/current/?token='+tokenUser, data, function (err, data) {
+function current(tokenUser, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/user/current/?token='+tokenUser, null, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -61,8 +61,8 @@ function contactList(data, userId, cb) {
   });
 }
 
-function contactLoad(data, userId, contactId, cb) {
-  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/user/contact/load/userId/'+userId+'/contactId/'+contactId, data, function (err, data) {
+function contactLoad(userId, contactId, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/user/contact/load/userId/'+userId+'/contactId/'+contactId, null, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -106,8 +106,8 @@ function addressList(data, userId, cb) {
   });
 }
 
-function addressLoad(data, userId, addressId, cb) {
-  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/user/address/load/userId/'+userId+'/addressId/'+addressId, data, function (err, data) {
+function addressLoad(userId, addressId, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/user/address/load/userId/'+userId+'/addressId/'+addressId, null, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -142,8 +142,8 @@ function relationCreate(data, cb) {
   });
 }
 
-function relationList(data, userId, cb) {
-  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/user/relation/list/userId/'+userId, data, function (err, data) {
+function relationList(userId, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/user/relation/list/userId/'+userId, null, function (err, data) {
     if (err) {
       return cb(err);
     }
