@@ -7,8 +7,8 @@ var modelSpec = require('./payment.model.spec');
 
 var token = 'nodePaymentPass';
 
-function createOrder(order, token, cb){
-    paymentService.createOrder(order, token, function(err, datao){
+function createOrder(order, cb){
+    paymentService.createOrder(order, function(err, datao){
         if(err){
             return cb(err);
         }
@@ -18,7 +18,7 @@ function createOrder(order, token, cb){
 
 describe('payment services test', function () {
   it('createCustomer', function (done) {this.timeout(60000);
-    paymentService.createCustomer({}, token, function (err, data) {
+    paymentService.createCustomer({}, function (err, data) {
       if (err) {
         return done(err);
       }
@@ -29,7 +29,7 @@ describe('payment services test', function () {
 
   it('createCard',function(done){
       this.timeout(60000);
-      paymentService.createCard({}, token, function(err, data){
+      paymentService.createCard({}, function(err, data){
           if(err){
               return done(err);
           }
@@ -40,7 +40,7 @@ describe('payment services test', function () {
 
   it('associateCard', function(done){
       this.timeout(60000);
-      paymentService.associateCard({}, token, function(err, data){
+      paymentService.associateCard({}, function(err, data){
           if(err){
             return done(err);
           }
@@ -50,7 +50,7 @@ describe('payment services test', function () {
   });
   it('createBank', function(done){
       this.timeout(60000);
-      paymentService.createBank({}, token, function(err, data){
+      paymentService.createBank({}, function(err, data){
           if(err){
               return done(err);
           }
@@ -60,7 +60,7 @@ describe('payment services test', function () {
   });
   it('associateBank', function(done){
       this.timeout(60000);
-      paymentService.associateBank({}, token, function(err, data){
+      paymentService.associateBank({}, function(err, data){
           if(err){
               return done(err);
           }
@@ -70,7 +70,7 @@ describe('payment services test', function () {
   });
   it('createOrder', function(done){
       this.timeout(60000);
-      createOrder({},token, function(err, datao){
+      createOrder({}, function(err, datao){
           if(err){
               return done(err);
           }
@@ -81,7 +81,7 @@ describe('payment services test', function () {
   });
     it('createOrderBank', function(done){
         this.timeout(60000);
-        createOrder({},token, function(err, datao){
+        createOrder({}, function(err, datao){
             if(err){
                 return done(err);
             }
@@ -91,7 +91,7 @@ describe('payment services test', function () {
     });
   it('debitCard', function(done){
       this.timeout(60000);
-      paymentService.debitCard({}, token, function(err, data){
+      paymentService.debitCard({}, function(err, data){
           if(err)
           return done(err);
           assert.equal('ValidationError', data.code);
@@ -101,7 +101,7 @@ describe('payment services test', function () {
 
   it('createBankVerification', function(done){
       this.timeout(60000);
-      paymentService.createBankVerification({}, token, function(err, data){
+      paymentService.createBankVerification({}, function(err, data){
          if(err){
              done(err);
          }
@@ -112,7 +112,7 @@ describe('payment services test', function () {
 
   it('confirmBankVerification', function(done){
     this.timeout(60000);
-    paymentService.confirmBankVerification({}, token, function(err, data){
+    paymentService.confirmBankVerification({}, function(err, data){
         if(err){
         done(err);
       }
@@ -123,7 +123,7 @@ describe('payment services test', function () {
 
   it('debitBank', function(done){
       this.timeout(60000);
-          paymentService.debitBank(null, token, function(err, data){
+          paymentService.debitBank(null, function(err, data){
               if(err){
                   return done(err);
               }
@@ -133,7 +133,7 @@ describe('payment services test', function () {
   });
   it('listCustomerBanks', function(done){
   this.timeout(60000);
-  paymentService.listCustomerBanks(null, token, function(err, data){
+  paymentService.listCustomerBanks(null, function(err, data){
        if(err){
           return done(err);
       }
@@ -143,7 +143,7 @@ describe('payment services test', function () {
   });
   it('listCards', function(done){
       this.timeout(60000);
-      paymentService.listCards('...', token, function(err, data){
+      paymentService.listCards('...', function(err, data){
           if(err){
                return done(err);
           }
@@ -153,7 +153,7 @@ describe('payment services test', function () {
   });
   it('loadBankVerification', function(done){
       this.timeout(60000);
-      paymentService.loadBankVerification(null, token, function(err, data){
+      paymentService.loadBankVerification(null, function(err, data){
           if(err){
               return done(err);
           }
@@ -163,7 +163,7 @@ describe('payment services test', function () {
   });
     it('prepareBank', function(done){
         this.timeout(60000);
-        paymentService.prepareBank({}, token, function(err, data){
+        paymentService.prepareBank({}, function(err, data){
             if(err){
                 return done(err);
             }
@@ -173,7 +173,7 @@ describe('payment services test', function () {
     })
     it('prepareCard', function(done){
         this.timeout(60000);
-        paymentService.prepareCard({}, token, function(err, data){
+        paymentService.prepareCard({}, function(err, data){
             if(err){
                 return done(err);
             }
@@ -184,7 +184,7 @@ describe('payment services test', function () {
 
     it('fetchBank', function(done){
         this.timeout(60000);
-        paymentService.fetchBank(null, token, function(err, data){
+        paymentService.fetchBank(null, function(err, data){
             if(err){
                 return done(err);
             }
@@ -194,7 +194,7 @@ describe('payment services test', function () {
     });
     it('fetchCard', function(done){
         this.timeout(60000);
-        paymentService.fetchCard(null, token, function(err, data){
+        paymentService.fetchCard(null, function(err, data){
             if(err){
                 return done(err);
             }
@@ -205,7 +205,7 @@ describe('payment services test', function () {
 
     it('getUserDefaultBankId', function(done){
         this.timeout(60000);
-        paymentService.getUserDefaultBankId(null, token, function(err, data){
+        paymentService.getUserDefaultBankId(null, function(err, data){
             if(err){
                 return done(err);
             }
@@ -215,7 +215,7 @@ describe('payment services test', function () {
     });
     it('getUserDefaultCardId', function(done){
         this.timeout(60000);
-        paymentService.getUserDefaultCardId(null, token, function(err, data){
+        paymentService.getUserDefaultCardId(null, function(err, data){
             if(err){
                 return done(err);
             }
@@ -225,7 +225,7 @@ describe('payment services test', function () {
     });
     it('deleteBankAccount', function(done){
         this.timeout(60000);
-        paymentService.deleteBankAccount({}, token, function(err, data){
+        paymentService.deleteBankAccount({}, function(err, data){
             if(err){
                 return done(err);
             }

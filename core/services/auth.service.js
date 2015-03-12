@@ -3,8 +3,8 @@
 var httpUtil = require('../http/http.util');
 var config = require('../config/index');
 
-function signup(data, token, cb) {
-  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/auth/local/signup', token, function (err, data) {
+function signup(data, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.POST, '/auth/local/signup', data, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -12,8 +12,8 @@ function signup(data, token, cb) {
   });
 }
 
-function logout(data, token, tokenUser, cb) {
-  httpUtil.httpRequest(config.user.connection, config.methods.GET, data, '/auth/logout/userId/' + tokenUser, token, function (err, data) {
+function logout(data, tokenUser, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/auth/logout/userId/' + tokenUser, data, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -21,8 +21,8 @@ function logout(data, token, tokenUser, cb) {
   });
 }
 
-function login(data, token, cb) {
-  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/auth/local/login', token, function (err, data) {
+function login(data, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.POST, '/auth/local/login', data, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -30,8 +30,8 @@ function login(data, token, cb) {
   });
 }
 
-function facebook(data, token, cb) {
-  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/auth/facebook/', token, function (err, data) {
+function facebook(data, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.POST, '/auth/facebook/', data, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -39,8 +39,8 @@ function facebook(data, token, cb) {
   });
 }
 
-function verifyRequest(data, token, userId, cb) {
-  httpUtil.httpRequest(config.user.connection, config.methods.GET, data, '/auth/verify-request/userId/' + userId, token, function (err, data) {
+function verifyRequest(data, userId, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/auth/verify-request/userId/' + userId, data, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -48,8 +48,8 @@ function verifyRequest(data, token, userId, cb) {
   });
 }
 
-function verify(data, token, userId, cb) {
-  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/auth/verify/userId/' + userId, token, function (err, data) {
+function verify(data, userId, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.POST, '/auth/verify/userId/' + userId, data, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -57,8 +57,8 @@ function verify(data, token, userId, cb) {
   });
 }
 
-function passwordResetRequest(data, token, cb) {
-  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/auth/password/reset-request', token, function (err, data) {
+function passwordResetRequest(data, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.POST, '/auth/password/reset-request', data, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -66,8 +66,8 @@ function passwordResetRequest(data, token, cb) {
   });
 }
 
-function passwordReset(data, token, cb) {
-  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/auth/password/reset', token, function (err, data) {
+function passwordReset(data, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.POST, '/auth/password/reset', data, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -75,8 +75,8 @@ function passwordReset(data, token, cb) {
   });
 }
 
-function passwordUpdate(data, token, userId, cb) {
-  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/auth/password/update/userId/' + userId, token, function (err, data) {
+function passwordUpdate(data, userId, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.POST, '/auth/password/update/userId/' + userId, data, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -84,8 +84,8 @@ function passwordUpdate(data, token, userId, cb) {
   });
 }
 
-function emailUpdate(data, token, userId, cb) {
-  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/auth/email/update/userId/' + userId, token, function (err, data) {
+function emailUpdate(data, userId, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.POST, '/auth/email/update/userId/' + userId, data, function (err, data) {
     if (err) {
       return cb(err);
     }

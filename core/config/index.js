@@ -13,23 +13,8 @@ var all = {
       urlPrefix : '/api/v1',
       isHttps: false,
       host: 'localhost',
-      port: 9000
-    }
-  },
-  user: {
-    connection: {
-      urlPrefix : '/api/v1',
-      isHttps: false,
-      host: 'localhost',
-      port: 9001
-    }
-  },
-  payment: {
-    connection: {
-      urlPrefix : '/api/v1',
-      isHttps: false,
-      host: 'localhost',
-      port: 9005
+      port: 9001,
+      token:'TDUserToken-CHANGE-ME!'
     }
   }
 };

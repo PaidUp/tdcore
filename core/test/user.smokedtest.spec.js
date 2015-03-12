@@ -6,7 +6,7 @@ var tokenTDUser = 'TDUserToken-CHANGE-ME!';
 
 describe.only('flow', function () {
   it('create user', function (done) {
-    userService.create({}, tokenTDUser, function (err, data) {
+    userService.create({}, function (err, data) {
       if (err) {
         return done(err);
       }
@@ -16,7 +16,7 @@ describe.only('flow', function () {
   });
 
   it('auth signup', function (done) {
-    authService.signup({}, tokenTDUser, function (err, data) {
+    authService.signup({}, function (err, data) {
       if (err) {
         return done(err);
       }
@@ -26,7 +26,7 @@ describe.only('flow', function () {
   });
 
   it('user current', function (done) {
-    userService.current({}, tokenTDUser, '', function (err, data) {
+    userService.current({}, '', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -36,7 +36,7 @@ describe.only('flow', function () {
   });
 
   it('create user logout', function (done) {
-    authService.logout({}, tokenTDUser, '', function (err, data) {
+    authService.logout({}, '', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -46,7 +46,7 @@ describe.only('flow', function () {
   });
 
   it('user login local', function (done) { 
-    authService.login({}, tokenTDUser, function (err, data) {
+    authService.login({}, function (err, data) {
       if (err) {
         return done(err);
       }
@@ -60,7 +60,7 @@ describe.only('flow', function () {
     var credentials = {
       facebookToken: 'FAKE'
     }; 
-    authService.facebook(credentials, tokenTDUser, function (err, data) {
+    authService.facebook(credentials, function (err, data) {
       if (err) {
         return done(err);
       }
@@ -70,7 +70,7 @@ describe.only('flow', function () {
   });
 
   it('verify request', function (done) {
-    authService.verifyRequest({}, tokenTDUser, '', function (err, data) {
+    authService.verifyRequest({}, '', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -80,7 +80,7 @@ describe.only('flow', function () {
   });
 
   it('verify', function (done) {
-    authService.verify({}, tokenTDUser, '', function (err, data) {
+    authService.verify({}, '', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -90,7 +90,7 @@ describe.only('flow', function () {
   });
 
   it('password reset request', function (done) {
-    authService.passwordResetRequest({}, tokenTDUser, function (err, data) {
+    authService.passwordResetRequest({}, function (err, data) {
       if (err) {
         return done(err);
       }
@@ -101,7 +101,7 @@ describe.only('flow', function () {
 
   it('password reset', function (done) {
     this.timeout(5000);
-    authService.passwordReset({}, tokenTDUser, function (err, data) {
+    authService.passwordReset({}, function (err, data) {
       if (err) {
         return done(err);
       }
@@ -111,7 +111,7 @@ describe.only('flow', function () {
   });
 
   it('password update', function (done) {
-    authService.passwordUpdate({}, tokenTDUser, '', function (err, data) {
+    authService.passwordUpdate({}, '', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -121,7 +121,7 @@ describe.only('flow', function () {
   });
 
   it('email update', function (done) {
-    authService.emailUpdate({}, tokenTDUser, '', function (err, data) {
+    authService.emailUpdate({}, '', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -131,7 +131,7 @@ describe.only('flow', function () {
   });
 
   it('user update', function (done) {
-    userService.update({}, tokenTDUser, '', function (err, data) {
+    userService.update({}, '', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -141,7 +141,7 @@ describe.only('flow', function () {
   });
 
   it('user find', function (done) {
-    userService.find({}, tokenTDUser, '', function (err, data) {
+    userService.find({}, '', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -151,7 +151,7 @@ describe.only('flow', function () {
   });
 
   it('user contact create', function (done) {
-    userService.contactCreate({}, tokenTDUser, '', function (err, data) {
+    userService.contactCreate({}, '', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -161,7 +161,7 @@ describe.only('flow', function () {
   });
 
   it('user contact list', function (done) {
-    userService.contactList({}, tokenTDUser, '', function (err, data) {
+    userService.contactList({}, '', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -171,7 +171,7 @@ describe.only('flow', function () {
   });
 
   it('user contact load', function (done) {
-    userService.contactLoad({}, tokenTDUser, '', '', function (err, data) {
+    userService.contactLoad({}, '', '', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -181,7 +181,7 @@ describe.only('flow', function () {
   });
 
   it('user contact update', function (done) {
-    userService.contactUpdate({}, tokenTDUser, '', '', function (err, data) {
+    userService.contactUpdate({}, '', '', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -191,7 +191,7 @@ describe.only('flow', function () {
   });
 
   it('user contact delete', function (done) {
-    userService.contactDelete({}, tokenTDUser, '', '', function (err, data) {
+    userService.contactDelete({}, '', '', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -201,7 +201,7 @@ describe.only('flow', function () {
   });
   
   it('user address create', function (done) {
-    userService.addressCreate({}, tokenTDUser, '', function (err, data) {
+    userService.addressCreate({}, '', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -211,7 +211,7 @@ describe.only('flow', function () {
   });
 
   it('user address list', function (done) {
-    userService.addressList({}, tokenTDUser, '', function (err, data) {
+    userService.addressList({}, '', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -221,7 +221,7 @@ describe.only('flow', function () {
   });
 
   it('user address load', function (done) {
-    userService.addressLoad({}, tokenTDUser, '', '', function (err, data) {
+    userService.addressLoad({}, '', '', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -231,7 +231,7 @@ describe.only('flow', function () {
   });
 
   it('user address update', function (done) {
-    userService.addressUpdate({}, tokenTDUser, '', '', function (err, data) {
+    userService.addressUpdate({}, '', '', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -241,7 +241,7 @@ describe.only('flow', function () {
   });
 
   it('user address delete', function (done) {
-    userService.addressDelete({}, tokenTDUser, '', '', function (err, data) {
+    userService.addressDelete({}, '', '', function (err, data) {
       if (err) {
         return done(err);
       }
@@ -251,7 +251,7 @@ describe.only('flow', function () {
   });
 
   it('create user (child)', function (done) {
-    userService.create({}, tokenTDUser, function (err, data) {
+    userService.create({}, function (err, data) {
       if (err) {
         return done(err);
       }
@@ -261,7 +261,7 @@ describe.only('flow', function () {
   });
 
   it('user relation create', function(done) {
-    userService.relationCreate({}, tokenTDUser, function (err, data) {
+    userService.relationCreate({}, function (err, data) {
       if (err) {
         return done(err);
       }
@@ -270,7 +270,7 @@ describe.only('flow', function () {
   });
 
   it('user relation list', function(done) {
-    userService.relationList({}, tokenTDUser, '', function (err, data) {
+    userService.relationList({}, '', function (err, data) {
       if (err) {
         return done(err);
       }

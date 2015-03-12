@@ -3,7 +3,7 @@
 var https = require('http');
 var querystring = require('querystring');
 
-exports.httpRequest = function (opt, method, bodyRequest, path, token, cb) {
+exports.httpRequest = function (opt, method, path, bodyRequest, cb) {
   bodyRequest = querystring.stringify(bodyRequest);
   var options = {
     urlPrefix : opt.urlPrefix ? opt.urlPrefix : '',
@@ -13,7 +13,7 @@ exports.httpRequest = function (opt, method, bodyRequest, path, token, cb) {
     method: method,
     path: opt.urlPrefix ? opt.urlPrefix+path : path,
     headers: {
-      'Authorization': token,
+      'Authorization': opt.token,
       'Content-Length': bodyRequest.length,
       'Content-Type': 'application/x-www-form-urlencoded'
     }
