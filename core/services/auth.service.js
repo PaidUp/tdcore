@@ -3,6 +3,10 @@
 var httpUtil = require('../http/http.util');
 var config = require('../config/index');
 
+function init(connection){
+  config.app.connection = connection;
+}
+
 function signup(data, cb) {
   httpUtil.httpRequest(config.app.connection, config.methods.POST, '/auth/local/signup', data, function (err, data) {
     if (err) {
@@ -103,3 +107,4 @@ exports.passwordResetRequest = passwordResetRequest;
 exports.passwordReset = passwordReset;
 exports.passwordUpdate = passwordUpdate;
 exports.emailUpdate = emailUpdate;
+exports.init = init;

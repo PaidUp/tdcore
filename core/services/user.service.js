@@ -3,8 +3,11 @@
 var httpUtil = require('../http/http.util');
 var config = require('../config/index');
 
-function create(data, cb) {
+function init(connection){
+  config.app.connection = connection;
+}
 
+function create(data, cb) {
   httpUtil.httpRequest(config.app.connection, config.methods.POST, '/user/create', data, function (err, data) {
     if (err) {
       return cb(err);
@@ -164,3 +167,4 @@ exports.addressUpdate = addressUpdate;
 exports.addressDelete = addressDelete;
 exports.relationCreate = relationCreate;
 exports.relationList = relationList;
+exports.init = init;

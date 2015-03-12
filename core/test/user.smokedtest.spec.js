@@ -5,7 +5,21 @@ var authService = require('../services/auth.service');
 var tokenTDUser = 'TDUserToken-CHANGE-ME!';
 
 describe.only('flow', function () {
+  
+  before(function(done){
+    userService.init({ 
+      urlPrefix : '/api/v1',
+      isHttps: false,
+      host: 'localhost',
+      port: 9001,
+      token:'TDUserToken-CHANGE-ME!'}
+    );
+    done();
+  });
+
   it('create user', function (done) {
+    
+
     userService.create({}, function (err, data) {
       if (err) {
         return done(err);
