@@ -4,7 +4,7 @@ var userService = require('../services/user.service');
 var authService = require('../services/auth.service');
 var tokenTDUser = 'TDUserToken-CHANGE-ME!';
 
-describe.only('flow', function () {
+describe.skip('flow', function () {
   it('create user', function (done) {
     userService.create({}, function (err, data) {
       if (err) {
