@@ -10,16 +10,11 @@ var all = {
   },
   app: {
     connection: {
+      urlPrefix : '/api/v1',
       isHttps: false,
       host: 'localhost',
-      port: 9000
-    }
-  },
-  user: {
-    connection: {
-      isHttps: false,
-      host: 'localhost',
-      port: 9001
+      port: 9001,
+      token:'TDUserToken-CHANGE-ME!'
     }
   }
 };
