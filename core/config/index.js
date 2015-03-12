@@ -10,6 +10,7 @@ var all = {
   },
   app: {
     connection: {
+      urlPrefix : '/api/v1',
       isHttps: false,
       host: 'localhost',
       port: 9000
@@ -17,9 +18,18 @@ var all = {
   },
   user: {
     connection: {
+      urlPrefix : '/api/v1',
       isHttps: false,
       host: 'localhost',
       port: 9001
+    }
+  },
+  payment: {
+    connection: {
+      urlPrefix : '/api/v1',
+      isHttps: false,
+      host: 'localhost',
+      port: 9005
     }
   }
 };

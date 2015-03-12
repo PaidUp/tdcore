@@ -4,7 +4,7 @@ var httpUtil = require('../http/http.util');
 var config = require('../config/index');
 
 function signup(data, token, cb) {
-  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, config.path + '/auth/local/signup', token, function (err, data) {
+  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/auth/local/signup', token, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -13,7 +13,7 @@ function signup(data, token, cb) {
 }
 
 function logout(data, token, tokenUser, cb) {
-  httpUtil.httpRequest(config.user.connection, config.methods.GET, data, config.path + '/auth/logout/userId/' + tokenUser, token, function (err, data) {
+  httpUtil.httpRequest(config.user.connection, config.methods.GET, data, '/auth/logout/userId/' + tokenUser, token, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -22,7 +22,7 @@ function logout(data, token, tokenUser, cb) {
 }
 
 function login(data, token, cb) {
-  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, config.path + '/auth/local/login', token, function (err, data) {
+  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/auth/local/login', token, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -31,7 +31,7 @@ function login(data, token, cb) {
 }
 
 function facebook(data, token, cb) {
-  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, config.path + '/auth/facebook/', token, function (err, data) {
+  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/auth/facebook/', token, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -40,7 +40,7 @@ function facebook(data, token, cb) {
 }
 
 function verifyRequest(data, token, userId, cb) {
-  httpUtil.httpRequest(config.user.connection, config.methods.GET, data, config.path + '/auth/verify-request/userId/' + userId, token, function (err, data) {
+  httpUtil.httpRequest(config.user.connection, config.methods.GET, data, '/auth/verify-request/userId/' + userId, token, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -49,7 +49,7 @@ function verifyRequest(data, token, userId, cb) {
 }
 
 function verify(data, token, userId, cb) {
-  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, config.path + '/auth/verify/userId/' + userId, token, function (err, data) {
+  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/auth/verify/userId/' + userId, token, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -58,7 +58,7 @@ function verify(data, token, userId, cb) {
 }
 
 function passwordResetRequest(data, token, cb) {
-  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, config.path + '/auth/password/reset-request', token, function (err, data) {
+  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/auth/password/reset-request', token, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -67,7 +67,7 @@ function passwordResetRequest(data, token, cb) {
 }
 
 function passwordReset(data, token, cb) {
-  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, config.path + '/auth/password/reset', token, function (err, data) {
+  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/auth/password/reset', token, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -76,7 +76,7 @@ function passwordReset(data, token, cb) {
 }
 
 function passwordUpdate(data, token, userId, cb) {
-  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, config.path + '/auth/password/update/userId/' + userId, token, function (err, data) {
+  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/auth/password/update/userId/' + userId, token, function (err, data) {
     if (err) {
       return cb(err);
     }
@@ -85,7 +85,7 @@ function passwordUpdate(data, token, userId, cb) {
 }
 
 function emailUpdate(data, token, userId, cb) {
-  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, config.path + '/auth/email/update/userId/' + userId, token, function (err, data) {
+  httpUtil.httpRequest(config.user.connection, config.methods.POST, data, '/auth/email/update/userId/' + userId, token, function (err, data) {
     if (err) {
       return cb(err);
     }
