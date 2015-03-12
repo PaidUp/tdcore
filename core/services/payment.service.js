@@ -6,8 +6,12 @@
 var httpUtil = require('../http/http.util');
 var config = require('../config/index');
 
+exports.init = function(connection){
+  config.payment.connection = connection;
+}
+
 exports.createCustomer = function (data, cb) {
-    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/customer/create', data, function (err, data) {
+    httpUtil.httpRequest(config.payment.connection, config.methods.POST, '/customer/create', data, function (err, data) {
         if (err) {
             return cb(err);
         }
