@@ -2,10 +2,14 @@
 'use strict';
 var assert = require('assert');
 var paymentService = require('../services/payment.service.js');
-var faker = require('faker');
-var modelSpec = require('./payment.model.spec');
 
-var token = 'nodePaymentPass';
+var conn = {
+  token: 'nodePaymentPass',
+  urlPrefix : '/api/v1',
+  isHttps: false,
+  host: 'localhost',
+  port: 9005
+};
 
 function createOrder(order, cb){
     paymentService.createOrder(order, function(err, datao){
@@ -16,7 +20,8 @@ function createOrder(order, cb){
     });
 };
 
-describe('payment services test', function () {
+describe.only('payment services test', function () {
+  paymentService.init(conn);
   it('createCustomer', function (done) {this.timeout(60000);
     paymentService.createCustomer({}, function (err, data) {
       if (err) {
@@ -235,12 +240,7 @@ describe('payment services test', function () {
     });
     it('test change connection object', function(done){
       this.timeout(60000);
-      var conn = {
-        urlPrefix : '/api/v2',
-        isHttps: false,
-        host: 'localhost',
-        port: 9005
-      };
+      conn.urlPrefix =  '/api/v2';
       paymentService.init(conn);
       paymentService.associateBank({}, function(err, data){
         if(err){
