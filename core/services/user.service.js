@@ -34,7 +34,7 @@ function update(data, userId, cb) {
   });
 }
 
-function find(data, userId, cb) {
+function find(data, cb) {
   httpUtil.httpRequest(config.app.connection, config.methods.POST, '/user/find', data, function (err, data) {
     if (err) {
       return cb(err);
@@ -151,6 +151,15 @@ function relationList(userId, cb) {
   });
 }
 
+function save(data, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.POST, '/user/save', data, function (err, data) {
+    if (err) {
+      return cb(err);
+    }
+    return cb(null, data);
+  });
+}
+
 exports.create = create;
 exports.current = current;
 exports.update = update;
@@ -168,3 +177,4 @@ exports.addressDelete = addressDelete;
 exports.relationCreate = relationCreate;
 exports.relationList = relationList;
 exports.init = init;
+exports.save = save;

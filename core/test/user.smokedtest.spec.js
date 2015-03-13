@@ -155,7 +155,7 @@ describe.only('flow', function () {
   });
 
   it('user find', function (done) {
-    userService.find({}, '', function (err, data) {
+    userService.find({}, function (err, data) {
       if (err) {
         return done(err);
       }
@@ -292,5 +292,15 @@ describe.only('flow', function () {
       return done();
     });
   });
-  
+
+  //generic method
+  it('user relation list', function(done) {
+    userService.save({}, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert(data.code);
+      return done();
+    });
+  });
 });
