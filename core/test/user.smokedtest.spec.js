@@ -155,7 +155,7 @@ describe.only('flow', function () {
   });
 
   it('user find', function (done) {
-    userService.find({}, '', function (err, data) {
+    userService.find({}, function (err, data) {
       if (err) {
         return done(err);
       }

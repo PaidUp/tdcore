@@ -34,7 +34,7 @@ function update(data, userId, cb) {
   });
 }
 
-function find(data, userId, cb) {
+function find(data, cb) {
   httpUtil.httpRequest(config.app.connection, config.methods.POST, '/user/find', data, function (err, data) {
     if (err) {
       return cb(err);
