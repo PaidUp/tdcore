@@ -8,7 +8,7 @@ exports.httpRequest = function (opt, method, path, bodyRequest, cb) {
   var options = {
     urlPrefix : opt.urlPrefix ? opt.urlPrefix : '',
     isHttps: opt.isHttps,
-    host: opt.url,
+    host: opt.host,
     port: opt.port,
     method: method,
     path: opt.urlPrefix ? opt.urlPrefix+path : path,
