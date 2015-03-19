@@ -11,8 +11,8 @@ exports.init = function(connection) {
 // **
 // ** Cart
 // **
-exports.cartCreate = function(data, cb) {
-    httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/cart/create', data, function (err, data) {
+exports.cartCreate = function(cb) {
+    httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/cart/create', {}, function (err, data) {
         if (err) {
             return cb(err);
         }
