@@ -4,15 +4,15 @@ var httpUtil = require('../http/http.util');
 var config = require('../config/index');
 var urlencode = require('urlencode');
 
-function init(connection) {
+exports.init = function(connection) {
     config.app.connection = connection;
 }
 
 // **
 // ** Cart
 // **
-exports.cartCreate = function(data, cb) {
-    httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/cart/create', data, function (err, data) {
+exports.cartCreate = function(cb) {
+    httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/cart/create', {}, function (err, data) {
         if (err) {
             return cb(err);
         }

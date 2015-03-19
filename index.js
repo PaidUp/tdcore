@@ -5,7 +5,8 @@ var authCoreService = require('./core/middleware/auth.service');
 var userService = require('./core/services/user.service');
 var authService = require('./core/services/auth.service');
 var paymentService = require('./core/services/payment.service');
-var loanService = require('./core/services/lan.service');
+var loanService = require('./core/services/loan.service');
+var commerceService = require('./core/services/commerce.service');
 
 exports.httpUtil = httpUtil;
 exports.authCoreService = authCoreService;
@@ -13,3 +14,4 @@ exports.userService = userService;
 exports.authService = authService;
 exports.paymentService = paymentService;
 exports.loanService = loanService;
+exports.commerceService = commerceService;
