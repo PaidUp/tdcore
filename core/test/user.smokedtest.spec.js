@@ -4,7 +4,7 @@ var userService = require('../services/user.service');
 var authService = require('../services/auth.service');
 var tokenTDUser = 'TDUserToken-CHANGE-ME!';
 
-describe.only('user.smokedtest', function () {
+describe('user.smokedtest', function () {
   
   before(function(done){
     userService.init({ 
