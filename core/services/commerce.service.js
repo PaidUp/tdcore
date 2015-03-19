@@ -4,7 +4,7 @@ var httpUtil = require('../http/http.util');
 var config = require('../config/index');
 var urlencode = require('urlencode');
 
-function init(connection) {
+exports.init = function(connection) {
     config.app.connection = connection;
 }
 

@@ -1,7 +1,7 @@
 
 'use strict';
 var assert = require('assert');
-var commerceServer = require('../services/commerce.service.js');
+var commerceService = require('../services/commerce.service.js');
 
 var conn = {
   token: 'nodeCommercePass',
@@ -12,14 +12,18 @@ var conn = {
 };
 
 describe.only('commerce.smokedtest - commerce service test - ', function () {
-  paymentService.init(conn);
-  it('Create Cart', function (done) {this.timeout(60000);
-    paymentService.createCart({}, function (err, data) {
+
+    commerceService.init(conn);
+
+    it('Create Cart', function (done) {this.timeout(60000);
+        commerceService.cartCreate(function (err, data) {
       if (err) {
         return done(err);
       }
       assert.equal('ValidationError', data.code);
       return done();
     });
-  });
+    });
+
+
 });
