@@ -70,7 +70,4 @@ describe.only('commerce.smokedtest - commerce service test - ', function () {
         });
     });
 
-
-
-
 });
