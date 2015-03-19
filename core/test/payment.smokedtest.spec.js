@@ -20,7 +20,7 @@ function createOrder(order, cb){
     });
 };
 
-describe.only('payment services test', function () {
+describe('payment services test', function () {
   paymentService.init(conn);
   it('createCustomer', function (done) {this.timeout(60000);
     paymentService.createCustomer({}, function (err, data) {
