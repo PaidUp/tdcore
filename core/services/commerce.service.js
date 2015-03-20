@@ -42,8 +42,8 @@ exports.cartAdd = function(cartId, shoppingCartProductEntity, cb) {
 exports.cartRemove = function(cartId, shoppingCartProductEntity, cb) {
     httpUtil.httpRequest(config.app.connection, config.methods.POST, '/commerce/cart/remove',
         {
-            cartId:cartId,
-            shoppingCartProductEntity: shoppingCartProductEntity
+            cartId: cartId,
+            products: shoppingCartProductEntity
         }, function (err, data) {
             if (err) {
                 return cb(err);
@@ -214,24 +214,94 @@ exports.catalogProduct = function(productId, cb) {
 // **
 // ** Order
 // **
-/*
- orderLoad(orderId
- >>>>> GET /order/load/orderId
- orderList(filter
- >>>>> POST /order/list
 
- orderCommentAdd(orderId, comment, status
- >>>>> POST /order/comment/create
- orderHold(orderId
- >>>>> GET /order/status/{status}
-*/
+exports.orderLoad = function(orderId, cb) {
+    httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/order/load/' + urlencode(orderId), {}, function (err, data) {
+        if (err) {
+            return cb(err);
+        }
+        if (data.status !== 200) {
+            return cb(data.body);
+        }
+        return cb(null, data.body);
+    });
+}
+
+exports.orderList = function(filter, cb) {
+    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/commerce/order/list', filter, function (err, data) {
+        if (err) {
+            return cb(err);
+        }
+        if (data.status !== 200) {
+            return cb(data.body);
+        }
+        return cb(null, data.body);
+    });
+}
+
+exports.orderCommentAdd = function(orderId, comment, status, cb) {
+    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/commerce/order/comment/create',
+        {
+            orderId: orderId,
+            comment: comment,
+            status: status
+        }
+        , function (err, data) {
+        if (err) {
+            return cb(err);
+        }
+        if (data.status !== 200) {
+            return cb(data.body);
+        }
+        return cb(null, data.body);
+    });
+}
+
+exports.orderUpdateStatus = function(orderId, status, cb) {
+    httpUtil.httpRequest(config.app.connection, config.methods.GET,
+        '/commerce/order/'+ urlencode(orderId) + '/status/' + urlencode(status),
+        {}
+        , function (err, data) {
+            if (err) {
+                return cb(err);
+            }
+            if (data.status !== 200) {
+                return cb(data.body);
+            }
+            return cb(null, data.body);
+        });
+}
 
 // **
 // ** Transaction
 // **
-/*
- transactionCreate(orderId, transactionId, details
- >>>>> POST /transaction/create
- transactionList(order.incrementId
- >>>>> GET /transaction/list/order/{orderId}
- */
+exports.transactionCreate = function(orderId, transactionId, details, cb) {
+    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/commerce/transaction/create',
+        {
+            orderId: orderId,
+            transactionId: transactionId,
+            details: details
+        }
+        , function (err, data) {
+            if (err) {
+                return cb(err);
+            }
+            if (data.status !== 200) {
+                return cb(data.body);
+            }
+            return cb(null, data.body);
+        });
+}
+
+exports.transactionList = function(orderId, cb) {
+    httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/transaction/list/order/' + urlencode(orderId), {}
+        , function (err, data) {
+            if (err) {
+                return cb(err);
+            }
+            if (data.status !== 200) {
+                return cb(data.body);
+            }
+            return cb(null, data.body);
+        });
+}
