@@ -23,6 +23,18 @@ function create(data, cb) {
   });
 }
 
+function save(data, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.POST, '/loan/application/save', data, function (err, data) {
+    if (err) {
+      return cb(err);
+    }
+    if (data.status !== 200) {
+      return cb(data.body);
+    }
+    return cb(null, data.body);
+  });
+}
+
 function state(data, cb) {
   httpUtil.httpRequest(config.app.connection, config.methods.POST, '/loan/application/state', data, function (err, data) {
     if (err) {
@@ -98,6 +110,7 @@ function  find(applicationId, cb) {
 module.exports = {
   init : init,
   create : create,
+  save : save,
   state : state,
   sign : sign,
   payment : payment,

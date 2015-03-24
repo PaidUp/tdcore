@@ -33,7 +33,7 @@ describe.only('loan.smokedtest', function() {
     });
   });
 
-  it('save', function(done) {
+  it('save loan', function(done) {
     this.timeout(60000);
     loanService.save({}, function(err, data) {
         assert(err.code);
@@ -43,7 +43,6 @@ describe.only('loan.smokedtest', function() {
 
   it('find', function(done) {
     loanService.find({}, function(err, data) {
-      console.log('err' , data);
       assert.equal(0 , data.length);
       done();
     });
@@ -54,6 +53,13 @@ describe.only('loan.smokedtest', function() {
       assert(err.code);
       return done();
   });
+  });
+
+  it('loan application save', function(done) {
+    loanApplicationService.save({}, function(err, data) {
+      assert(err.code);
+      return done();
+    });
   });
 
   it('loan application state', function(done) {
