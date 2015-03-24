@@ -23,20 +23,17 @@ exports.cartCreate = function(cb) {
     });
 }
 
-exports.cartAdd = function(cartId, shoppingCartProductEntity, cb) {
-    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/commerce/cart/add',
-        {
-            cartId:cartId,
-            shoppingCartProductEntity: shoppingCartProductEntity
-        }, function (err, data) {
-        if (err) {
-            return cb(err);
-        }
-        if (data.status !== 200) {
-            return cb(data.body);
-        }
-        return cb(null, data.body);
-    });
+exports.cartAdd = function(shoppingCartProductEntity, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.POST, '/commerce/cart/add',
+    shoppingCartProductEntity, function (err, data) {
+    if (err) {
+        return cb(err);
+    }
+    if (data.status !== 200) {
+        return cb(data.body);
+    }
+    return cb(null, data.body);
+  });
 }
 
 exports.cartRemove = function(cartId, shoppingCartProductEntity, cb) {
