@@ -44,6 +44,18 @@ function save(data, cb) {
   });
 }
 
+function create(data, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.POST, '/loan/create', data, function (err, data) {
+    if (err) {
+      return cb(err);
+    }
+    if (data.status !== 200) {
+      return cb(data.body);
+    }
+    return cb(null, data.body);
+  });
+}
+
 function find(data, cb) {
   httpUtil.httpRequest(config.app.connection, config.methods.POST, '/loan/find', data, function (err, data) {
     if (err) {
@@ -63,6 +75,7 @@ module.exports = {
   simulate : simulate,
   getLoan : getLoan,
   save : save,
-  find : find
+  find : find,
+  create : create
 }
 
