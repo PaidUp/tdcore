@@ -212,6 +212,18 @@ function save(data, cb) {
     });
 }
 
+function sign(data, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.POST, '/user/sign', data, function (err, data) {
+      if (err) {
+          return cb(err);
+      }
+      if (data.status !== 200) {
+          return cb(data.body);
+      }
+      return cb(null, data.body);
+  });
+}
+
 exports.create = create;
 exports.current = current;
 exports.update = update;
@@ -230,3 +242,4 @@ exports.relationCreate = relationCreate;
 exports.relationList = relationList;
 exports.init = init;
 exports.save = save;
+exports.sign = sign;
