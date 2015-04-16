@@ -227,8 +227,8 @@ exports.fetchBank = function (bankId, cb) {
     });
 };
 
-exports.fetchCard = function (cardId, cb) {
-    httpUtil.httpRequest(config.app.connection, config.methods.GET, '/card/fetch/cardId/' + urlencode(cardId), null, function (err, data) {
+exports.fetchCard = function (customerId, cardId, cb) {
+    httpUtil.httpRequest(config.app.connection, config.methods.GET, '/card/fetch/customerId/'+urlencode(customerId)+'/cardId/' + urlencode(cardId), null, function (err, data) {
         if (err) {
             return cb(err);
         }
