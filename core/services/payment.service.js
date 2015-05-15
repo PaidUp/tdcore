@@ -274,3 +274,27 @@ exports.getUserDefaultCardId = function (customerId, cb) {
         return cb(null, data.body);
     });
 };
+
+exports.createConnectAccount = function (data, cb) {
+    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/customer/create/connect', data, function (err, data) {
+        if (err) {
+            return cb(err);
+        }
+        if (data.status !== 200) {
+            return cb(data.body);
+        }
+        return cb(null, data.body);
+    });
+};
+
+exports.addBankToAccount = function (data, cb) {
+    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/bank/create/connect', data, function (err, data) {
+        if (err) {
+            return cb(err);
+        }
+        if (data.status !== 200) {
+            return cb(data.body);
+        }
+        return cb(null, data.body);
+    });
+};
