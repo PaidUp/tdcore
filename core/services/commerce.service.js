@@ -208,6 +208,18 @@ exports.catalogProduct = function(productId, cb) {
     });
 }
 
+exports.catalogCreate = function(catalogData,cb) {
+    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/commerce/catalog/create', catalogData, function (err, data) {
+        if (err) {
+            return cb(err);
+        }
+        if (data.status !== 200) {
+            return cb(data.body);
+        }
+        return cb(null, data.body);
+    });
+}
+
 // **
 // ** Order
 // **
