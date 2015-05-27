@@ -329,3 +329,32 @@ exports.transactionList = function(orderId, userId, cb) {
          return cb(null, data.body);
      });
  }
+
+
+/**
+ * Schedule
+ */
+
+exports.generate = function(productId,cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/schedule/generate/product/'+productId, {}, function (err, data) {
+    if (err) {
+      return cb(err);
+    }
+    if (data.status !== 200) {
+      return cb(data.body);
+    }
+    return cb(null, data.body);
+  });
+};
+
+exports.payments = function(params,cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/schedule/payments/order/'+params.orderId+'/status/'+params.status, {}, function (err, data) {
+    if (err) {
+      return cb(err);
+    }
+    if (data.status !== 200) {
+      return cb(data.body);
+    }
+    return cb(null, data.body);
+  });
+};
