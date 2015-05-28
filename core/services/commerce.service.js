@@ -302,8 +302,8 @@ exports.transactionCreate = function(orderId, transactionId, details, cb) {
         });
 }
 
-exports.transactionList = function(orderId, userId, cb) {
-    httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/transaction/list/order/' + urlencode(orderId)+'/user/'+urlencode(userId), {}
+exports.transactionList = function(orderId, cb) {
+    httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/transaction/list/order/' + urlencode(orderId), {}
         , function (err, data) {
             if (err) {
                 return cb(err);
