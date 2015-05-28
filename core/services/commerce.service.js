@@ -336,7 +336,7 @@ exports.generateSchedule = function(productId,cb) {
 };
 
 exports.paymentsSchedule = function(params,cb) {
-  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/schedule/payments/order/'+params.orderId+'/status/'+params.status, {}, function (err, data) {
+  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/schedule/payments/order/'+params.orderId, {}, function (err, data) {
     if (err) {
       return cb(err);
     }
