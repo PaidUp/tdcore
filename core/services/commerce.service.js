@@ -208,8 +208,8 @@ exports.catalogProduct = function(productId, cb) {
     });
 }
 
-exports.catalogCreate = function(catalogData,cb) {
-    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/commerce/catalog/create', catalogData, function (err, data) {
+exports.catalogCreate = function(teamData, cb) {
+    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/commerce/catalog/create', teamData, function (err, data) {
         if (err) {
             return cb(err);
         }
