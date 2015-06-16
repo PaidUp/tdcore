@@ -47,6 +47,18 @@ exports.addLegalCustomer = function (data, cb) {
     });
 };
 
+exports.updateAccount = function (data, cb) {
+    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/customer/update/connect', data, function (err, data) {
+        if (err) {
+            return cb(err);
+        }
+        if (data.status !== 200) {
+            return cb(data.body);
+        }
+        return cb(null, data.body);
+    });
+};
+
 exports.createCard = function (data, cb) {
     httpUtil.httpRequest(config.app.connection, config.methods.POST, '/card/create', data, function (err, data) {
         if (err) {
