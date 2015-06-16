@@ -196,6 +196,18 @@ exports.catalogCategory = function(categoryId, cb) {
     });
 }
 
+exports.groupedProduct = function(productId, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/catalog/product/link/' + urlencode(productId), {}, function (err, data) {
+    if (err) {
+      return cb(err);
+    }
+    if (data.status !== 200) {
+      return cb(data.body);
+    }
+    return cb(null, data.body);
+  });
+}
+
 exports.catalogProduct = function(productId, cb) {
     httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/catalog/product/' + urlencode(productId), {}, function (err, data) {
         if (err) {
