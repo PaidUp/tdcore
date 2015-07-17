@@ -347,8 +347,21 @@ exports.transactionList = function(orderId, cb) {
  * Schedule
  */
 
+//Deprecated
 exports.generateSchedule = function(productId,cb) {
   httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/schedule/generate/product/'+productId, {}, function (err, data) {
+    if (err) {
+      return cb(err);
+    }
+    if (data.status !== 200) {
+      return cb(data.body);
+    }
+    return cb(null, data.body);
+  });
+};
+
+exports.generateScheduleV2 = function(params,cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.POST, '/commerce/schedule/generate', params, function (err, data) {
     if (err) {
       return cb(err);
     }
