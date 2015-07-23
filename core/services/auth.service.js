@@ -127,6 +127,18 @@ function emailUpdate(data, userId, cb) {
     });
 }
 
+function getSessionSalt(cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/auth/session/salt' , null, function (err, data) {
+    if (err) {
+      return cb(err);
+    }
+    if (data.status !== 200) {
+      return cb(data.body);
+    }
+    return cb(null, data.body);
+  });
+}
+
 exports.signup = signup;
 exports.logout = logout;
 exports.login = login;
@@ -138,3 +150,4 @@ exports.passwordReset = passwordReset;
 exports.passwordUpdate = passwordUpdate;
 exports.emailUpdate = emailUpdate;
 exports.init = init;
+exports.getSessionSalt = getSessionSalt;
