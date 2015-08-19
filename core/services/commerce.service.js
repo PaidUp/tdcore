@@ -408,3 +408,15 @@ exports.listRetryPayments = function(cb) {
     return cb(null, data.body);
   });
 };
+
+exports.listOrdersComplete = function(cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/order/complete', {}, function (err, data) {
+    if (err) {
+      return cb(err);
+    }
+    if (data.status !== 200) {
+      return cb(data.body);
+    }
+    return cb(null, data.body);
+  });
+};
