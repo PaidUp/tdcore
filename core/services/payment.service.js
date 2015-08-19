@@ -23,6 +23,18 @@ exports.createCustomer = function (data, cb) {
     });
 };
 
+exports.fetchCustomer = function (customerId, cb) {
+    httpUtil.httpRequest(config.app.connection, config.methods.GET, '/customer/fetch/' + urlencode(customerId), null, function (err, data) {
+        if (err) {
+            return cb(err);
+        }
+        if (data.status !== 200) {
+            return cb(data.body);
+        }
+        return cb(null, data.body);
+    });
+};
+
 exports.updateCustomer = function (data, cb) {
     httpUtil.httpRequest(config.app.connection, config.methods.POST, '/customer/update', data, function (err, data) {
         if (err) {
