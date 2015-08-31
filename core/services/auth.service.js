@@ -67,8 +67,8 @@ function verifyRequest(userId, cb) {
     });
 }
 
-function verify(data, userId, cb) {
-    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/auth/verify/userId/' + userId, data, function (err, data) {
+function verify(data, cb) {
+    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/auth/verify/', data, function (err, data) {
         if (err) {
             return cb(err);
         }
