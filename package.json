@@ -1,6 +1,6 @@
 {
   "name": "TDCore",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "utilities for javascript projects",
   "main": "index.js",
   "scripts": {
@@ -20,6 +20,8 @@
     "Core"
   ],
   "devDependencies": {
+    "chalk": "^1.1.1",
+    "david": "^6.2.0",
     "faker": "^2.1.2",
     "gulp": "^3.8.11",
     "gulp-mocha": "^2.0.0"
