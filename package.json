@@ -20,6 +20,8 @@
     "Core"
   ],
   "devDependencies": {
+    "chalk": "^1.1.1",
+    "david": "^6.2.0",
     "faker": "3.0.1",
     "gulp": "3.9.0",
     "gulp-mocha": "2.1.3"
