@@ -20,8 +20,8 @@
     "Core"
   ],
   "devDependencies": {
-    "chalk": "^1.1.1",
-    "david": "^6.2.0",
+    "chalk": "1.1.1",
+    "david": "6.2.0",
     "faker": "3.0.1"
   },
   "dependencies": {
