@@ -422,7 +422,7 @@ exports.listOrdersComplete = function(cb) {
 };
 
 exports.createOrderInvoice = function(orderId, cb) {
-  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/'+urlencode(orderId)+'/create/invoice', {}, function (err, data) {
+  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/order/'+urlencode(orderId)+'/create/invoice', {}, function (err, data) {
     if (err) {
       return cb(err);
     }
