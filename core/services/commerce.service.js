@@ -420,3 +420,15 @@ exports.listOrdersComplete = function(cb) {
     return cb(null, data.body);
   });
 };
+
+exports.createOrderInvoice = function(orderId, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/order/'+urlencode(orderId)+'/create/invoice', {}, function (err, data) {
+    if (err) {
+      return cb(err);
+    }
+    if (data.status !== 200) {
+      return cb(data.body);
+    }
+    return cb(null, data.body);
+  });
+};
