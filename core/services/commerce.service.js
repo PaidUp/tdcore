@@ -355,6 +355,17 @@ exports.transactionList = function(orderId, cb) {
      });
  }
 
+ exports.customerForgotPasword = function(userInfo,cb) {
+     httpUtil.httpRequest(config.app.connection, config.methods.POST, '/commerce/customer/forgotpassword', userInfo, function (err, data) {
+         if (err) {
+             return cb(err);
+         }
+         if (data.status !== 200) {
+             return cb(data.body);
+         }
+         return cb(null, data.body);
+     });
+ }
 
 /**
  * Schedule
