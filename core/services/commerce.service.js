@@ -389,7 +389,31 @@ exports.customerAddAddress = function(addressInfo, customerId, cb){
          }
          return cb(null, data.body);
      });
- };
+};
+
+exports.customerUpdateAddress = function(addressInfo, addressId, cb){
+    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/commerce/customer/customerUpdateAddress/'+ addressId, addressInfo, function (err, data) {
+         if (err) {
+             return cb(err);
+         }
+         if (data.status !== 200) {
+             return cb(data.body);
+         }
+         return cb(null, data.body);
+     });
+};
+
+exports.customerGetAddresses = function(addressId, cb){
+    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/commerce/customer/customerAddresses/'+ addressId, function (err, data) {
+         if (err) {
+             return cb(err);
+         }
+         if (data.status !== 200) {
+             return cb(data.body);
+         }
+         return cb(null, data.body);
+     });
+};
 
  exports.customerInfo = function(customerId,cb) {
      httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/customer/info/'+customerId, {}, function (err, data) {
