@@ -428,7 +428,7 @@ exports.customerGetAddresses = function(addressId, cb){
  };
 
 exports.customerLogIn = function(userInfo, cb) {
-     httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/customer/logIn', userInfo, function (err, data) {
+     httpUtil.httpRequest(config.app.connection, config.methods.POST, '/commerce/customer/logIn', userInfo, function (err, data) {
          if (err) {
              return cb(err);
          }
