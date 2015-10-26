@@ -275,8 +275,8 @@ exports.prepareBank = function (data, cb) {
     });
 };
 
-exports.fetchBank = function (bankId, cb) {
-    httpUtil.httpRequest(config.app.connection, config.methods.GET, '/bank/fetch/bankId/' + urlencode(bankId), null, function (err, data) {
+exports.fetchBank = function (customerId, bankId, cb) {
+    httpUtil.httpRequest(config.app.connection, config.methods.GET, '/bank/fetch/customerId/'+urlencode(customerId)+'/bankId/' + urlencode(bankId), null, function (err, data) {
         if (err) {
             return cb(err);
         }
