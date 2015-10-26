@@ -404,7 +404,7 @@ exports.customerUpdateAddress = function(addressInfo, addressId, cb){
 };
 
 exports.customerGetAddresses = function(addressId, cb){
-    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/commerce/customer/customerAddresses/'+ addressId, function (err, data) {
+    httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/customer/customerAddresses/'+ addressId, {}, function (err, data) {
          if (err) {
              return cb(err);
          }
