@@ -379,8 +379,8 @@ exports.transactionList = function(orderId, cb) {
      });
  };
 
- exports.customerResetPasword = function(userInfo, cb){
-    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/commerce/customer/resetpassword', userInfo, function (err, data) {
+ exports.customAction = function(action, actionData, cb){
+    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/commerce/custom/action/'+action, actionData, function (err, data) {
          if (err) {
              return cb(err);
          }
@@ -390,6 +390,18 @@ exports.transactionList = function(orderId, cb) {
          return cb(null, data.body);
      });
  };
+
+  exports.customerResetPasword = function(userInfo, cb){
+    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/commerce/customer/resetpassword', userInfo, function (err, data) {
+         if (err) {
+             return cb(err);
+         }
+         if (data.status !== 200) {
+             return cb(data.body);
+         }
+         return cb(null, data.body);
+    });
+  };
 
 exports.customerAddAddress = function(addressInfo, customerId, cb){
     httpUtil.httpRequest(config.app.connection, config.methods.POST, '/commerce/customer/customerAddress/'+ customerId, addressInfo, function (err, data) {
