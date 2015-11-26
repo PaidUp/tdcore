@@ -209,6 +209,20 @@ exports.catalogCategory = function(categoryId, cb) {
     });
 }
 
+exports.catalogCategoryV2 = function(categoryId, cb) {
+    var conf = JSON.parse(JSON.stringify(config.app.connection));
+    conf.urlPrefix = '/api/v2';
+    httpUtil.httpRequest(conf, config.methods.GET, '/commerce/catalog/category/' + urlencode(categoryId), {}, function (err, data) {
+        if (err) {
+            return cb(err);
+        }
+        if (data.status !== 200) {
+            return cb(data.body);
+        }
+        return cb(null, data.body);
+    });
+}
+
 exports.groupedProduct = function(productId, cb) {
   httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/catalog/product/link/' + urlencode(productId), {}, function (err, data) {
     if (err) {
@@ -223,6 +237,20 @@ exports.groupedProduct = function(productId, cb) {
 
 exports.catalogProduct = function(productId, cb) {
     httpUtil.httpRequest(config.app.connection, config.methods.GET, '/commerce/catalog/product/' + urlencode(productId), {}, function (err, data) {
+        if (err) {
+            return cb(err);
+        }
+        if (data.status !== 200) {
+            return cb(data.body);
+        }
+        return cb(null, data.body);
+    });
+}
+
+exports.catalogProductV2 = function(productId, cb) {
+    var conf = JSON.parse(JSON.stringify(config.app.connection));
+    conf.urlPrefix = '/api/v2';
+    httpUtil.httpRequest(conf, config.methods.GET, '/commerce/catalog/product/' + urlencode(productId), {}, function (err, data) {
         if (err) {
             return cb(err);
         }
