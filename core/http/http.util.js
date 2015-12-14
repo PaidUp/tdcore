@@ -2,6 +2,8 @@
 
 var https = require('http');
 var querystring = require('querystring');
+var req = require('superagent');
+var config = require('../config/index');
 
 exports.httpRequest = function(opt, method, path, bodyRequest, cb) {
   var contentType = '';
@@ -59,3 +61,41 @@ exports.httpRequest = function(opt, method, path, bodyRequest, cb) {
   request.write(bodyRequest);
   request.end();
 };
+
+exports.request = function(opt, method, path, bodyRequest, cb){
+
+  var contentType = '';
+  if ((typeof(bodyRequest) == 'object') && (bodyRequest != null)) {
+    contentType = 'application/json';
+  } else {
+    contentType = 'application/x-www-form-urlencoded';
+  }
+
+  let url = opt.isHttps ? "https://" : "http://";
+  url = url + opt.host;
+  url = url + ":"+opt.port;
+  url = url + opt.urlPrefix || '';
+  url = url + path || '';
+
+  let request = req(method , url)
+    .set('Authorization', opt.token)
+    .set('Content-Type', contentType);
+
+  if(method === 'GET'){
+    request.query(bodyRequest);
+  }else{
+    request.send(bodyRequest);
+  }
+
+  request.on('error', function(error){
+    return cb(error);
+  })
+
+  request.end(function(err, res){
+    if(err){
+      return cb(err);
+    }
+    cb(err, res)
+  });
+
+}
