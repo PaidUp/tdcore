@@ -12,7 +12,7 @@ exports.init = function(connection) {
 exports.paymentPlanCreate = function(params, cb) {
   httpUtil.request(conn, config.methods.POST, '/paymentplan/create', params, function (err, data) {
     if (err) {
-      return cb(err);
+      return cb(err.response.body);
     }
     if (data.status !== 200) {
       return cb(data.body);
@@ -24,7 +24,7 @@ exports.paymentPlanCreate = function(params, cb) {
 exports.paymentPlanCreateFull = function(params, cb) {
   httpUtil.request(conn, config.methods.POST, '/paymentplan/create/full', params, function (err, data) {
     if (err) {
-      return cb(err);
+      return cb(err.response.body);
     }
     if (data.status !== 200) {
       return cb(data.body);
@@ -48,7 +48,7 @@ exports.paymentPlanUpdate = function(params, cb) {
 exports.paymentPlanInfo = function(paymentplanid, cb) {
   httpUtil.request(conn, config.methods.GET, '/paymentplan/info/'+paymentplanid, {}, function (err, data) {
     if (err) {
-      return cb(err);
+      return cb(err.response.body);
     }
     if (data.status !== 200) {
       return cb(data.body);
@@ -60,7 +60,7 @@ exports.paymentPlanInfo = function(paymentplanid, cb) {
 exports.paymentPlanInfoFull = function(paymentplanid, cb) {
   httpUtil.request(conn, config.methods.GET, '/paymentplan/info/full/'+paymentplanid, {}, function (err, data) {
     if (err) {
-      return cb(err);
+      return cb(err.response.body);
     }
     if (data.status !== 200) {
       return cb(data.body);
@@ -72,7 +72,7 @@ exports.paymentPlanInfoFull = function(paymentplanid, cb) {
 exports.paymentPlanList = function(params, cb) {
   httpUtil.request(conn, config.methods.POST, '/paymentplan/list', params, function (err, data) {
     if (err) {
-      return cb(err);
+      return cb(err.response.body);
     }
     if (data.status !== 200) {
       return cb(data.body);
@@ -84,7 +84,7 @@ exports.paymentPlanList = function(params, cb) {
 exports.paymentPlanDelete = function(paymentplanid, cb) {
   httpUtil.request(conn, config.methods.DELETE, '/paymentplan/delete/'+paymentplanid, {}, function (err, data) {
     if (err) {
-      return cb(err);
+      return cb(err.response.body);
     }
     if (data.status !== 200) {
       return cb(data.body);
