@@ -4,7 +4,7 @@ var assert = require('chai').assert
 var paymentPlanService = require('../services/paymentPlan.service.js');
 
 var conn = {
-  token: 'nodePaymentPass',
+  token: 'tdschedule-secret',
   urlPrefix : '/api/v2',
   isHttps: false,
   host: 'localhost',
