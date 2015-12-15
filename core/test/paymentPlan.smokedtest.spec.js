@@ -39,9 +39,6 @@ describe('payment services test', function () {
       playmentPlanData: {name:'testName3',
         destination:'destinationTest3'}};
     paymentPlanService.paymentPlanUpdate(param, function (err, data) {
-
-      console.log('error' ,err);
-      console.log('data' ,data);
       if (err) {
         return done(err);
       }
@@ -52,8 +49,6 @@ describe('payment services test', function () {
 
   it('get info payment plan', function (done) {
     paymentPlanService.paymentPlanInfo(result.paymentPlanId, function (err, data) {
-      //console.log('error' ,err);
-      console.log('data' ,data);
       if (err) {
         return done(err);
       }
@@ -62,5 +57,66 @@ describe('payment services test', function () {
     });
   });
 
+  it.skip('list payment plan', function (done) {
+    paymentPlanService.paymentPlanList({entity_id : result.paymentPlanId}, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert.isArray(data);
+      assert.equal(1 , data.length)
+      done();
+    });
+  });
 
+  it('create full payment plan', function (done) {
+    var param = {paymentplan : {
+      name:'testNameFull', destination:'destinationTestFull',
+      'metadatas' : [
+        {name : 'metaName1' , value : 'metaValue1'} , {name : 'metaName2' , value : 'metaValue2'}],
+      'schedules' : {
+        schedule_data : {name :'schedule full test',
+          informations : [
+            {name : 'scheduleName1' , value : 'scheduleValue1'},
+            {name : 'scheduleName2' , value : 'scheduleValue2'}
+          ]
+        },
+
+      }}}
+
+    paymentPlanService.paymentPlanCreateFull(param, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      result.paymentPlanIdFull = data.paymentPlanId;
+      assert.isString(data.paymentPlanId);
+      done();
+    });
+  });
+
+  it('get info full payment plan', function (done) {
+    paymentPlanService.paymentPlanInfoFull(result.paymentPlanIdFull, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert.isObject(data);
+      done();
+    });
+  });
+
+  it('delete payment plan', function (done) {
+    paymentPlanService.paymentPlanDelete(result.paymentPlanIdFull, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert.isTrue(data.deleted);
+      done();
+    });
+  });
+
+  it('get info full payment plan deleted', function (done) {
+    paymentPlanService.paymentPlanInfoFull(result.paymentPlanIdFull, function (err, data) {
+      assert.equal('Invalid playment plan id.', err.faultString);
+      done();
+    });
+  });
 });
