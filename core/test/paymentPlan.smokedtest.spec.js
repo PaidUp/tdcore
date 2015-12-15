@@ -69,7 +69,7 @@ describe('payment services test', function () {
   });
 
   it('create full payment plan', function (done) {
-    var param = {paymentplan : {
+    var param =  {
       name:'testNameFull', destination:'destinationTestFull',
       'metadatas' : [
         {name : 'metaName1' , value : 'metaValue1'} , {name : 'metaName2' , value : 'metaValue2'}],
@@ -80,8 +80,7 @@ describe('payment services test', function () {
             {name : 'scheduleName2' , value : 'scheduleValue2'}
           ]
         },
-
-      }}}
+      }}
 
     paymentPlanService.paymentPlanCreateFull(param, function (err, data) {
       if (err) {
@@ -98,6 +97,7 @@ describe('payment services test', function () {
       if (err) {
         return done(err);
       }
+      console.log('data' , JSON.stringify(data))
       assert.isObject(data);
       done();
     });
