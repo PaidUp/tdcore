@@ -103,11 +103,22 @@ describe('payment services test', function () {
   });
 
   it('get info full payment plan by name', function (done) {
-    paymentPlanService.paymentPlanInfoFullByName('testNameFull', function (err, data) {
+    paymentPlanService.paymentPlanInfoFullByName('testNameFull', false, function (err, data) {
       if (err) {
         return done(err);
       }
       assert.isObject(data);
+      done();
+    });
+  });
+
+  it('get info full payment plan by name parse', function (done) {
+    paymentPlanService.paymentPlanInfoFullByName('testNameFull', true, function (err, data) {
+      if (err) {
+        return done(err);
+      }
+      assert.isObject(data);
+      assert.ok(data.destinationId);
       done();
     });
   });

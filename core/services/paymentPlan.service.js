@@ -70,7 +70,7 @@ function paymentPlanInfoFull (paymentplanid, cb) {
 }
 
 
-function paymentPlanInfoFullByName (name, cb) {
+function paymentPlanInfoFullByName (name, isParce, cb) {
 
   paymentPlanList({name : name}, function(err ,data){
     if(err){
@@ -82,7 +82,8 @@ function paymentPlanInfoFullByName (name, cb) {
       if(errInfo){
         return cb(errInfo);
       }
-      cb(null , dataInfo);
+
+      cb(null , isParce ? parsePaymentPlan(dataInfo) : dataInfo);
     });
   });
 
@@ -111,6 +112,27 @@ function paymentPlanDelete (paymentplanid, cb) {
     }
     return cb(null, data.body);
   });
+}
+
+function parsePaymentPlan(response){
+  var schedule = {destinationId : response.destination,
+    schedulePeriods : [],
+    meta : {}
+  };
+
+  response.schedules.forEach(function (ele, idx, arr){
+    var schedulePeriod = {}
+    ele.informations.forEach(function(eleInfo, idxInfo, arrInfo){
+      schedulePeriod[eleInfo.name] = eleInfo.value
+    });
+    schedule.schedulePeriods.push(schedulePeriod);
+  });
+
+  response.metadatas.forEach(function (ele, idx, arr){
+    schedule.meta[ele.name] = ele.value;
+  });
+
+  return schedule;
 }
 
 module.exports = {
