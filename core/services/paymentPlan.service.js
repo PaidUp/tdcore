@@ -5,11 +5,11 @@ var config = require('../config/index');
 
 var conn = {};
 
-exports.init = function(connection) {
+function init (connection) {
   conn = connection;
 }
 
-exports.paymentPlanCreate = function(params, cb) {
+function paymentPlanCreate (params, cb) {
   httpUtil.request(conn, config.methods.POST, '/paymentplan/create', params, function (err, data) {
     if (err) {
       return cb(err.response.body);
@@ -21,7 +21,7 @@ exports.paymentPlanCreate = function(params, cb) {
   });
 }
 
-exports.paymentPlanCreateFull = function(params, cb) {
+function paymentPlanCreateFull (params, cb) {
   httpUtil.request(conn, config.methods.POST, '/paymentplan/create/full', params, function (err, data) {
     if (err) {
       return cb(err.response.body);
@@ -33,7 +33,7 @@ exports.paymentPlanCreateFull = function(params, cb) {
   });
 }
 
-exports.paymentPlanUpdate = function(params, cb) {
+function paymentPlanUpdate(params, cb) {
   httpUtil.request(conn, config.methods.PUT, '/paymentplan/update', params, function (err, data) {
     if (err) {
       return cb(err);
@@ -45,7 +45,7 @@ exports.paymentPlanUpdate = function(params, cb) {
   });
 }
 
-exports.paymentPlanInfo = function(paymentplanid, cb) {
+function paymentPlanInfo (paymentplanid, cb) {
   httpUtil.request(conn, config.methods.GET, '/paymentplan/info/'+paymentplanid, {}, function (err, data) {
     if (err) {
       return cb(err.response.body);
@@ -57,7 +57,7 @@ exports.paymentPlanInfo = function(paymentplanid, cb) {
   });
 }
 
-exports.paymentPlanInfoFull = function(paymentplanid, cb) {
+function paymentPlanInfoFull (paymentplanid, cb) {
   httpUtil.request(conn, config.methods.GET, '/paymentplan/info/full/'+paymentplanid, {}, function (err, data) {
     if (err) {
       return cb(err.response.body);
@@ -69,7 +69,27 @@ exports.paymentPlanInfoFull = function(paymentplanid, cb) {
   });
 }
 
-exports.paymentPlanList = function(params, cb) {
+
+function paymentPlanInfoFullByName (name, cb) {
+
+  paymentPlanList({name : name}, function(err ,data){
+    if(err){
+      return cb(err);
+    }
+    entityId =data.pop().entityId;
+
+    paymentPlanInfoFull(entityId, function(errInfo , dataInfo){
+      if(errInfo){
+        return cb(errInfo);
+      }
+      cb(null , dataInfo);
+    });
+  });
+
+
+}
+
+function paymentPlanList (params, cb) {
   httpUtil.request(conn, config.methods.POST, '/paymentplan/list', params, function (err, data) {
     if (err) {
       return cb(err.response.body);
@@ -81,7 +101,7 @@ exports.paymentPlanList = function(params, cb) {
   });
 }
 
-exports.paymentPlanDelete = function(paymentplanid, cb) {
+function paymentPlanDelete (paymentplanid, cb) {
   httpUtil.request(conn, config.methods.DELETE, '/paymentplan/delete/'+paymentplanid, {}, function (err, data) {
     if (err) {
       return cb(err.response.body);
@@ -91,4 +111,16 @@ exports.paymentPlanDelete = function(paymentplanid, cb) {
     }
     return cb(null, data.body);
   });
+}
+
+module.exports = {
+  init : init,
+  paymentPlanCreate : paymentPlanCreate,
+  paymentPlanCreateFull : paymentPlanCreateFull,
+  paymentPlanUpdate : paymentPlanUpdate,
+  paymentPlanInfo : paymentPlanInfo,
+  paymentPlanInfoFull : paymentPlanInfoFull,
+  paymentPlanInfoFullByName : paymentPlanInfoFullByName,
+  paymentPlanList : paymentPlanList,
+  paymentPlanDelete : paymentPlanDelete
 }
