@@ -76,7 +76,7 @@ function paymentPlanInfoFullByName (name, isParce, cb) {
     if(err){
       return cb(err);
     }
-    if(!data){
+    if(!data || data.length === 0){
       return cb(null , {})
     }
     entityId =data.pop().entityId;
