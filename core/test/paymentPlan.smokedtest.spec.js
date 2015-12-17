@@ -13,13 +13,13 @@ var conn = {
 
 var result = {};
 
-before(function(){
+before(function(done){
   paymentPlanService.init(conn);
+  done();
 });
 
 describe('payment services test', function () {
-  paymentPlanService.init(conn);
-  this.timeout(10000);
+
 
   it('create payment plan', function (done) {
     let param = {name:'testName',
@@ -73,14 +73,20 @@ describe('payment services test', function () {
       name:'testNameFull', destination:'destinationTestFull',
       'metadatas' : [
         {name : 'metaName1' , value : 'metaValue1'} , {name : 'metaName2' , value : 'metaValue2'}],
-      'schedules' : {
-        schedule_data : {name :'schedule full test',
+      'schedules' : [
+        {name :'schedule full test 1',
           informations : [
             {name : 'scheduleName1' , value : 'scheduleValue1'},
             {name : 'scheduleName2' , value : 'scheduleValue2'}
           ]
         },
-      }}
+        {name :'schedule full test 2',
+          informations : [
+            {name : 'scheduleName3' , value : 'scheduleValue3'},
+            {name : 'scheduleName4' , value : 'scheduleValue4'}
+          ]
+        }
+      ]}
 
     paymentPlanService.paymentPlanCreateFull(param, function (err, data) {
       if (err) {
