@@ -71,13 +71,13 @@ exports.request = function(opt, method, path, bodyRequest, cb){
     contentType = 'application/x-www-form-urlencoded';
   }
 
-  let url = opt.isHttps ? "https://" : "http://";
+  var url = opt.isHttps ? "https://" : "http://";
   url = url + opt.host;
   url = url + ":"+opt.port;
   url = url + opt.urlPrefix || '';
   url = url + path || '';
 
-  let request = req(method , url)
+  var request = req(method , url)
     .set('Authorization', opt.token)
     .set('Content-Type', contentType);
 
