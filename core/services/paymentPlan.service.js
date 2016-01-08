@@ -124,7 +124,8 @@ function parsePaymentPlan(response){
   };
 
   response.schedules.forEach(function (ele, idx, arr){
-    var schedulePeriod = {}
+    var schedulePeriod = {};
+    schedulePeriod.entityId = ele.entityId;
     ele.informations.forEach(function(eleInfo, idxInfo, arrInfo){
       schedulePeriod[eleInfo.name] = eleInfo.value
     });
@@ -134,6 +135,19 @@ function parsePaymentPlan(response){
   response.metadatas.forEach(function (ele, idx, arr){
     schedule.meta[ele.name] = ele.value;
   });
+
+
+  function scheduleUpdate (params, cb) {
+    httpUtil.request(conn, config.methods.POST, '/paymentplan/schedule/update', params, function (err, data) {
+      if (err) {
+        return cb(err.response.body);
+      }
+      if (data.status !== 200) {
+        return cb(data.body);
+      }
+      return cb(null, data.body);
+    });
+  }
 
   return schedule;
 }
@@ -147,5 +161,6 @@ module.exports = {
   paymentPlanInfoFull : paymentPlanInfoFull,
   paymentPlanInfoFullByName : paymentPlanInfoFullByName,
   paymentPlanList : paymentPlanList,
-  paymentPlanDelete : paymentPlanDelete
+  paymentPlanDelete : paymentPlanDelete,
+  scheduleUpdate,scheduleUpdate
 }
