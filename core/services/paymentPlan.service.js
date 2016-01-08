@@ -136,20 +136,19 @@ function parsePaymentPlan(response){
     schedule.meta[ele.name] = ele.value;
   });
 
-
-  function scheduleUpdate (params, cb) {
-    httpUtil.request(conn, config.methods.POST, '/paymentplan/schedule/update', params, function (err, data) {
-      if (err) {
-        return cb(err.response.body);
-      }
-      if (data.status !== 200) {
-        return cb(data.body);
-      }
-      return cb(null, data.body);
-    });
-  }
-
   return schedule;
+}
+
+function scheduleUpdate (params, cb) {
+  httpUtil.request(conn, config.methods.POST, '/paymentplan/schedule/update', params, function (err, data) {
+    if (err) {
+      return cb(err.response.body);
+    }
+    if (data.status !== 200) {
+      return cb(data.body);
+    }
+    return cb(null, data.body);
+  });
 }
 
 module.exports = {
