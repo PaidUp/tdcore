@@ -162,5 +162,5 @@ module.exports = {
   paymentPlanInfoFullByName : paymentPlanInfoFullByName,
   paymentPlanList : paymentPlanList,
   paymentPlanDelete : paymentPlanDelete,
-  scheduleUpdate,scheduleUpdate
+  scheduleUpdate:scheduleUpdate
 }
