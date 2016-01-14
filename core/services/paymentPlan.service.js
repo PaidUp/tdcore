@@ -140,7 +140,7 @@ function parsePaymentPlan(response){
 }
 
 function scheduleInformationUpdate (params, cb) {
-  httpUtil.request(conn, config.methods.POST, '/paymentplan/schedule/update/information', params, function (err, data) {
+  httpUtil.request(conn, config.methods.PUT, '/paymentplan/schedule/update/information', params, function (err, data) {
     if (err) {
       return cb(err.response.body);
     }
