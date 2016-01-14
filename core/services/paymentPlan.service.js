@@ -139,8 +139,8 @@ function parsePaymentPlan(response){
   return schedule;
 }
 
-function scheduleUpdate (params, cb) {
-  httpUtil.request(conn, config.methods.POST, '/paymentplan/schedule/update', params, function (err, data) {
+function scheduleInformationUpdate (params, cb) {
+  httpUtil.request(conn, config.methods.POST, '/paymentplan/schedule/update/information', params, function (err, data) {
     if (err) {
       return cb(err.response.body);
     }
@@ -161,5 +161,5 @@ module.exports = {
   paymentPlanInfoFullByName : paymentPlanInfoFullByName,
   paymentPlanList : paymentPlanList,
   paymentPlanDelete : paymentPlanDelete,
-  scheduleUpdate:scheduleUpdate
+  scheduleInformationUpdate:scheduleInformationUpdate
 }
