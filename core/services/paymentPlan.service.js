@@ -140,7 +140,31 @@ function parsePaymentPlan(response){
 }
 
 function scheduleInformationUpdate (params, cb) {
-  httpUtil.request(conn, config.methods.PUT, '/paymentplan/schedule/update/information', params, function (err, data) {
+  httpUtil.request(conn, config.methods.PUT, '/paymentplan/schedule/information/update', params, function (err, data) {
+    if (err) {
+      return cb(err.response.body);
+    }
+    if (data.status !== 200) {
+      return cb(data.body);
+    }
+    return cb(null, data.body);
+  });
+}
+
+function scheduleInformationCreate (params, cb) {
+  httpUtil.request(conn, config.methods.POST, '/paymentplan/schedule/information/create', params, function (err, data) {
+    if (err) {
+      return cb(err.response.body);
+    }
+    if (data.status !== 200) {
+      return cb(data.body);
+    }
+    return cb(null, data.body);
+  });
+}
+
+function scheduleInformationDelete(paymentPlanId, cb) {
+  httpUtil.request(conn, config.methods.DELETE, '/paymentplan/schedule/information/delete/'+paymentPlanId, {}, function (err, data) {
     if (err) {
       return cb(err.response.body);
     }
