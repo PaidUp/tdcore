@@ -118,9 +118,11 @@ function paymentPlanDelete (paymentplanid, cb) {
 }
 
 function parsePaymentPlan(response){
-  var schedule = {destinationId : response.destination,
-    schedulePeriods : [],
-    meta : {}
+  var schedule = {
+      paymentPlanId : response.entityId,
+      destinationId : response.destination,
+      schedulePeriods : [],
+      meta : {}
   };
 
   response.schedules.forEach(function (ele, idx, arr){
