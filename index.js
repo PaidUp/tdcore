@@ -9,6 +9,7 @@ var loanService = require('./core/services/loan.service');
 var loanApplicationService = require('./core/services/loanApplication.service');
 var commerceService = require('./core/services/commerce.service');
 var paymentPlanService = require('./core/services/paymentPlan.service');
+var duesService = require('./core/services/dues.service');
 
 exports.httpUtil = httpUtil;
 exports.authCoreService = authCoreService;
@@ -19,3 +20,4 @@ exports.loanService = loanService;
 exports.loanApplicationService = loanApplicationService;
 exports.commerceService = commerceService;
 exports.paymentPlanService = paymentPlanService;
+exports.duesService = duesService;
