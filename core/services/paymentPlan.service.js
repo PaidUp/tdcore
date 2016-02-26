@@ -177,6 +177,18 @@ function scheduleInformationDelete(paymentPlanId, cb) {
   });
 }
 
+function generateDues(params, cb) {
+  httpUtil.request(conn, config.methods.POST, '/dues/generate', params, function (err, data) {
+    if (err) {
+      return cb(err.response.body);
+    }
+    if (data.status !== 200) {
+      return cb(data.body);
+    }
+    return cb(null, data.body);
+  });
+}
+
 module.exports = {
   init : init,
   paymentPlanCreate : paymentPlanCreate,
