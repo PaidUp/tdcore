@@ -25,7 +25,9 @@ describe('dues services test', function () {
     let param = {}
     duesService.generateDues(param, function (err, data) {
 
-      assert.equal('processingFees is required', err);
+      console.log('data' , data);
+
+      assert.equal('processingFees is required', err.message);
       done();
     });
   });
