@@ -1,13 +1,14 @@
 'use strict';
+require('pmx').init({
+  http : true
+});
 
 var https = require('http');
 var querystring = require('querystring');
 var req = require('superagent');
 var config = require('../config/index');
 
-require('pmx').init({
-  http : true
-});
+
 
 exports.httpRequest = function(opt, method, path, bodyRequest, cb) {
   var contentType = '';
