@@ -382,3 +382,15 @@ exports.getTransfers = function getTransfers (stripeId, cb) {
     return cb(null, data.body)
   })
 }
+
+exports.getBalance = function getBalance (connectAccountId, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/balance/' + urlencode(connectAccountId), null, function (err, data) {
+    if (err) {
+      return cb(err)
+    }
+    if (data.status !== 200) {
+      return cb(data.body)
+    }
+    return cb(null, data.body)
+  })
+}
