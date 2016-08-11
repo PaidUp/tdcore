@@ -383,8 +383,8 @@ exports.getTransfers = function getTransfers (stripeId, cb) {
   })
 }
 
-exports.getBalance = function getBalance (connectAccountId, cb) {
-  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/balance/' + urlencode(connectAccountId), null, function (err, data) {
+exports.getBalance = function getBalance (connectAccountId, transferId, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/balance/' + urlencode(connectAccountId) + '/' + urlencode(transferId), null, function (err, data) {
     if (err) {
       return cb(err)
     }
