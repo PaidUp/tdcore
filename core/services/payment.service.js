@@ -430,3 +430,19 @@ exports.plaidAuthenticate = function (data, cb) {
     return cb(null, data.body)
   })
 }
+
+exports.retrievePayment = function (paymentId, accountId, cb) {
+    let url = '/payment/'+urlencode(paymentId);
+    if(accountId){
+        url = url + '/account/'+accountId
+    }
+    httpUtil.httpRequest(config.app.connection, config.methods.GET, url, null, function (err, data) {
+        if (err) {
+            return cb(err);
+        }
+        if (data.status !== 200) {
+            return cb(data.body);
+        }
+        return cb(null, data.body);
+    });
+};
