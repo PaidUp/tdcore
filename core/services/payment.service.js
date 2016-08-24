@@ -359,11 +359,8 @@ exports.addBankToAccount = function (data, cb) {
     });
 };
 
-exports.retrievePayment = function (paymentId, accountId, cb) {
-    let url = '/payment/'+urlencode(paymentId);
-    if(accountId){
-        url = url + '/account/'+accountId
-    }
+exports.getDepositCharge = function (paymentId, accountId, cb) {
+    let url = '/charge/payment/'+urlencode(paymentId)+'/account/'+urlencode(accountId);
     httpUtil.httpRequest(config.app.connection, config.methods.GET, url, null, function (err, data) {
         if (err) {
             return cb(err);
