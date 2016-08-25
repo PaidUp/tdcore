@@ -443,3 +443,16 @@ exports.getDepositCharge = function (paymentId, accountId, cb) {
         return cb(null, data.body);
     });
 };
+
+exports.getDepositChargeRefund = function (paymentId, accountId, cb) {
+    let url = '/charge/payment/'+urlencode(paymentId)+'/account/'+urlencode(accountId)+'/refund';
+    httpUtil.httpRequest(config.app.connection, config.methods.GET, url, null, function (err, data) {
+        if (err) {
+            return cb(err);
+        }
+        if (data.status !== 200) {
+            return cb(data.body);
+        }
+        return cb(null, data.body);
+    });
+};
