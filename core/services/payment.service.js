@@ -402,12 +402,8 @@ exports.refund = function (chargeId, reason, cb) {
     });
 };
 
-exports.retrieveTransfer = function (transferId, reason, cb) {
+exports.retrieveTransfer = function (transferId, cb) {
     let url = '/transfer/retrieve/'+urlencode(transferId);
-    let params = {
-        chargeId: chargeId,
-        reason: reason
-    }
     httpUtil.httpRequest(config.app.connection, config.method.GET, url, null, function (err, data) {
         if (err) {
             return cb(err);
