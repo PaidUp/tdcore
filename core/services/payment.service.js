@@ -456,3 +456,20 @@ exports.getDepositChargeRefund = function (paymentId, accountId, cb) {
         return cb(null, data.body);
     });
 };
+
+exports.refund = function (chargeId, reason, cb) {
+    let url = '/refund';
+    let params = {
+        chargeId: chargeId,
+        reason: reason
+    }
+    httpUtil.httpRequest(config.app.connection, config.method.POST, url, params, function (err, data) {
+        if (err) {
+            return cb(err);
+        }
+        if (data.status !== 200) {
+            return cb(data.body);
+        }
+        return cb(null, data.body);
+    });
+};
