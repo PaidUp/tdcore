@@ -386,12 +386,29 @@ exports.getDepositChargeRefund = function (paymentId, accountId, cb) {
 };
 
 exports.refund = function (chargeId, reason, cb) {
-    let url = '/refund';
+    let url = '/charge/refund';
     let params = {
         chargeId: chargeId,
         reason: reason
     }
     httpUtil.httpRequest(config.app.connection, config.method.POST, url, params, function (err, data) {
+        if (err) {
+            return cb(err);
+        }
+        if (data.status !== 200) {
+            return cb(data.body);
+        }
+        return cb(null, data.body);
+    });
+};
+
+exports.retrieveTransfer = function (transferId, reason, cb) {
+    let url = '/transfer/retrieve/'+urlencode(transferId);
+    let params = {
+        chargeId: chargeId,
+        reason: reason
+    }
+    httpUtil.httpRequest(config.app.connection, config.method.GET, url, null, function (err, data) {
         if (err) {
             return cb(err);
         }
