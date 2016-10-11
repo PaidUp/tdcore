@@ -20,6 +20,18 @@ function create(data, cb) {
     });
 }
 
+function createAll(data, cb) {
+    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/user/create/all', data, function (err, data) {
+        if (err) {
+            return cb(err);
+        }
+        if (data.status !== 200) {
+            return cb(data.body);
+        }
+        return cb(null, data.body);
+    });
+}
+
 function current(tokenUser, cb) {
     httpUtil.httpRequest(config.app.connection, config.methods.GET, '/user/current/?token=' + urlencode(tokenUser), null, function (err, data) {
         if (err) {
@@ -225,6 +237,7 @@ function sign(data, cb) {
 }
 
 exports.create = create;
+exports.createAll = createAll;
 exports.current = current;
 exports.update = update;
 exports.find = find;
