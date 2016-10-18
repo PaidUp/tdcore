@@ -57,7 +57,7 @@ function update(data, userId, cb) {
 }
 
 function updateProductsSuggested(userId, productsSuggested, cb) {
-    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/user/'+urlencode(userId)+'/update/products', data, function (err, data) {
+    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/user/'+urlencode(userId)+'/update/products', productsSuggested, function (err, data) {
         if (err) {
             return cb(err);
         }
