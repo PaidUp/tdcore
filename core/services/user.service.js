@@ -268,3 +268,4 @@ exports.relationList = relationList;
 exports.init = init;
 exports.save = save;
 exports.sign = sign;
+exports.updateProductsSuggested = updateProductsSuggested;
