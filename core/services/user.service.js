@@ -56,6 +56,18 @@ function update(data, userId, cb) {
     });
 }
 
+function updateProductsSuggested(userId, productsSuggested, cb) {
+    httpUtil.httpRequest(config.app.connection, config.methods.POST, '/user/'+urlencode(userId)+'/update/products', productsSuggested, function (err, data) {
+        if (err) {
+            return cb(err);
+        }
+        if (data.status !== 200) {
+            return cb(data.body);
+        }
+        return cb(null, data.body);
+    });
+}
+
 function find(data, cb) {
     httpUtil.httpRequest(config.app.connection, config.methods.POST, '/user/find', data, function (err, data) {
         if (err) {
