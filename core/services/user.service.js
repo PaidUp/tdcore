@@ -45,7 +45,7 @@ function current(tokenUser, cb) {
 }
 
 function currentStr(tokenUser, cb) {
-    httpUtil.httpRequest(config.app.connection, config.methods.GET, '/user/current/?token=' + urlencode(tokenUser), null, function (err, data) {
+    httpUtil.httpRequest(config.app.connection, config.methods.GET, '/user/currentStr/?token=' + urlencode(tokenUser), null, function (err, data) {
         if (err) {
             return cb(err);
         }
