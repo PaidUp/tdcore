@@ -44,18 +44,6 @@ function current(tokenUser, cb) {
     });
 }
 
-function currentStr(tokenUser, cb) {
-    httpUtil.httpRequest(config.app.connection, config.methods.GET, '/user/currentStr/?token=' + urlencode(tokenUser), null, function (err, data) {
-        if (err) {
-            return cb(err);
-        }
-        if (data.status !== 200) {
-            return cb(data.body);
-        }
-        return cb(null, data.body);
-    });
-}
-
 function update(data, userId, cb) {
     httpUtil.httpRequest(config.app.connection, config.methods.POST, '/user/update/userId/' + urlencode(userId), data, function (err, data) {
         if (err) {
@@ -263,7 +251,6 @@ function sign(data, cb) {
 exports.create = create;
 exports.createAll = createAll;
 exports.current = current;
-exports.currentStr = currentStr;
 exports.update = update;
 exports.find = find;
 exports.contactCreate = contactCreate;
