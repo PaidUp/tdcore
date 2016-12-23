@@ -371,8 +371,8 @@ exports.addBankToAccount = function (data, cb) {
   })
 }
 
-exports.getTransfers = function getTransfers (stripeId, cb) {
-  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/transfer/' + urlencode(stripeId), null, function (err, data) {
+exports.getTransfers = function getTransfers (stripeId, from, to, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/transfer/' + urlencode(stripeId)+'/from/'+urlencode(from)+'/to/'+urlencode(to), null, function (err, data) {
     if (err) {
       return cb(err)
     }
