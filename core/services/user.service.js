@@ -248,6 +248,30 @@ function sign(data, cb) {
   });
 }
 
+function addProduct(data, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.POST, '/product/save', data, function (err, data) {
+      if (err) {
+          return cb(err);
+      }
+      if (data.status !== 200) {
+          return cb(data.body);
+      }
+      return cb(null, data.body);
+  });
+}
+
+function getProducts(email, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.GET, '/product/'+urlencode(email), null, function (err, data) {
+      if (err) {
+          return cb(err);
+      }
+      if (data.status !== 200) {
+          return cb(data.body);
+      }
+      return cb(null, data.body);
+  });
+}
+
 exports.create = create;
 exports.createAll = createAll;
 exports.current = current;
@@ -269,3 +293,5 @@ exports.init = init;
 exports.save = save;
 exports.sign = sign;
 exports.updateProductsSuggested = updateProductsSuggested;
+exports.addProduct = addProduct;
+exports.getProducts = getProducts;
