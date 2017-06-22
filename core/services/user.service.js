@@ -260,6 +260,18 @@ function addProduct(data, cb) {
   });
 }
 
+function deleteProduct(data, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.POST, '/product/delete', data, function (err, data) {
+      if (err) {
+          return cb(err);
+      }
+      if (data.status !== 200) {
+          return cb(data.body);
+      }
+      return cb(null, data.body);
+  });
+}
+
 function getProducts(email, cb) {
   httpUtil.httpRequest(config.app.connection, config.methods.GET, '/product/'+urlencode(email), null, function (err, data) {
       if (err) {
