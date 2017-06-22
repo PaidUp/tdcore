@@ -307,3 +307,4 @@ exports.sign = sign;
 exports.updateProductsSuggested = updateProductsSuggested;
 exports.addProduct = addProduct;
 exports.getProducts = getProducts;
+exports.deleteProduct = deleteProduct;
