@@ -457,11 +457,14 @@ exports.getDepositChargeRefund = function (paymentId, accountId, cb) {
     });
 };
 
-exports.refund = function (chargeId, reason, cb) {
+exports.refund = function (chargeId, reason, amount, cb) {
     let url = '/charge/refund';
     let params = {
         chargeId: chargeId,
         reason: reason
+    }
+    if(amount){
+      params['amount'] = amount;
     }
     httpUtil.httpRequest(config.app.connection, config.methods.POST, url, params, function (err, data) {
         if (err) {
