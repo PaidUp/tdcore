@@ -239,6 +239,30 @@ exports.deleteBankAccount = function (data, cb) {
   })
 }
 
+exports.deleteCardAccount = function (data, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.DELETE, `/card/customer/${data.customerId}/card/${data.cardId}`, {}, function (err, data) {
+    if (err) {
+      return cb(err)
+    }
+    if (data.status !== 200) {
+      return cb(data.body)
+    }
+    return cb(null, data.body)
+  })
+}
+
+exports.deleteBankAccount = function (data, cb) {
+  httpUtil.httpRequest(config.app.connection, config.methods.DELETE, `/bank/customer/${data.customerId}/bank/${data.bankId}`, {}, function (err, data) {
+    if (err) {
+      return cb(err)
+    }
+    if (data.status !== 200) {
+      return cb(data.body)
+    }
+    return cb(null, data.body)
+  })
+}
+
 exports.confirmBankVerification = function (data, cb) {
   httpUtil.httpRequest(config.app.connection, config.methods.POST, '/bank/confirm/verification', data, function (err, data) {
     if (err) {
